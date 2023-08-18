@@ -1,6 +1,6 @@
 import connectMongo from "../../../utils/connectMongo";
 import User from "../../../model/UserModel";
-
+import Follow from "../../../model/FollowModel";
 
 
 
@@ -19,7 +19,7 @@ export default async function NewUser(req, res) {
         const IsUser = await User.find({ UserName: UserName })
         const IsEmail = await User.find({ email: email })
 
-        console.log(IsEmail[0])
+
 
         if (IsUser[0] === undefined) {
             if (IsEmail[0] === undefined) {
@@ -31,13 +31,25 @@ export default async function NewUser(req, res) {
                     isActive: true,
                     isVerified: false
                 })
-                res.status(200).json({ newbie });
-            }else{
-                res.status(255).json({ message: "email exists" })
+
+
+                if (newbie._id === undefined) {
+                    return res.status(401).json("couldn't create")
+                } else {
+                    const fll = await Follow.create({
+                        userId: newbie._id
+                    })
+                }
+
+
+
+                return res.status(200).json({ newbie });
+            } else {
+                return res.status(255).json({ message: "email exists" })
             }
 
         } else {
-            res.status(256).json({ message: "user exists" })
+            return res.status(256).json({ message: "user exists" })
         }
 
 
