@@ -6,13 +6,25 @@ module.exports = {
     themes: [
       {
         myTheme: {
-          primary: "rgba(54,5,154)"
+          primary: "rgba(4,19,187)",
+          secondary: "rgba(238,239,254)"
         }
       }
     ]
   },
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        sidebar: "300px auto", // 👈 for sidebar layout. adds grid-cols-sidebar class
+      },
+      gridTemplateRows: {
+        header: "64px auto", // 👈 for the navbar layout. adds grid-rows-header class
+      },
+      colors: {
+        primary: "rgba(4,19,187)",
+        secondary: "rgba(238,239,254)"
+       },
+    },
   },
   plugins: [require("daisyui")],
 }

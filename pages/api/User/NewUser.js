@@ -1,7 +1,7 @@
 import connectMongo from "../../../utils/connectMongo";
 import User from "../../../model/UserModel";
 import Follow from "../../../model/FollowModel";
-
+import Journal from "../../../model/JournalModel";
 
 
 export default async function NewUser(req, res) {
@@ -38,6 +38,9 @@ export default async function NewUser(req, res) {
                 } else {
                     const fll = await Follow.create({
                         userId: newbie._id
+                    })
+                    const FillJ = await Journal.create({
+                        userId:newbie._id
                     })
                 }
 

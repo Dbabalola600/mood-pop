@@ -3,11 +3,13 @@ import TextInput from '../components/inputs/TextInput'
 import Link from 'next/link'
 import Image from 'next/image'
 import DefaultLayout from '../components/Layout/DefaultLayout'
+import Footer from '../components/Navigation/Footer'
 
 
 export default function HomePage() {
   return (
 
+<>
 
     <div
       className="w-full mg:h-full  bg-primary text-black text-base md:text-xl"
@@ -114,11 +116,12 @@ export default function HomePage() {
       </div>
 
 
-
+     
 
 
     </div>
-
+    <Footer />
+    </>
   )
 }
 
