@@ -4,12 +4,18 @@ import Link from 'next/link'
 import Image from 'next/image'
 import DefaultLayout from '../components/Layout/DefaultLayout'
 import Footer from '../components/Navigation/Footer'
+import Head from 'next/head'
 
 
 export default function SignUp() {
     return (
 
         <>
+            <Head>
+                <title>MOOD</title>
+                <meta name="description" content="Anti Social Social Media" />
+                <link rel="icon" href="/mood.ico" />
+            </Head>
 
             <div
                 className="w-full mg:h-full  bg-primary text-black text-base md:text-xl"
