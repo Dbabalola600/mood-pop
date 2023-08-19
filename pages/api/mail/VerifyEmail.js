@@ -1,49 +1,31 @@
-import { sendMail } from "../../../utils/mailService";
+import { sendEmail } from "../../../utils/sendgrid";
 
 
 
 
-const handler = async (req, res) => {
+export default async (req, res) => {
+
+    const { method } = req;
+
+    const { mail, title } = JSON.parse(req.body)
+
+    console.log(title)
+
+
     try {
-        const { method } = req;
-
-        const { mail, title } = JSON.parse(req.body)
-
-        console.log(title)
-        switch (method) {
-            case "POST": {
-
-
-                // console.log(mail)
-                //Do some thing
-                await sendMail(
-                    //subject
-                    "Mood Verification",
-                    //mail
-                    mail,
-                    //context
-                   "please input the following to verify your account:  "+ title
-
-                );
-                res.status(200).send("Success");
-                break;
-            }
-            case "GET": {
-                //Do some thing
-                res.status(200).send(req.auth_data);
-                break;
-            }
-            default:
-                res.setHeader("Allow", ["POST", "GET", "PUT", "DELETE"]);
-                res.status(405).end(`Method ${method} Not Allowed`);
-                break;
-        }
-    } catch (err) {
-        res.status(400).json({
-            error_code: "api_one",
-            message: err.message,
-        });
+        await sendEmail(
+            //sending to
+            mail,
+            //subject
+            "Mood Verification",
+            ///context
+            "please input the following to verify your account:  " + title
+        );
+        res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
-};
 
-export default handler;
+
+}
