@@ -5,9 +5,15 @@ import Image from 'next/image'
 import DefaultLayout from '../components/Layout/DefaultLayout'
 import Footer from '../components/Navigation/Footer'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 
 export default function HomePage() {
+
+
+  const router = useRouter()
+
+
   return (
 
     <>
@@ -76,12 +82,14 @@ export default function HomePage() {
 
               <div className=" w-full  space-y-2">
 
-                <button className="w-full btn-primary btn  text-white"
-                  type="submit">
+                <div className="w-full btn-primary btn  text-white"
+                  // type="submit"
+                  onClick={() => router.push("/DashBoard")}
+                >
                   {/* {isLoading ? "Loading..." : "SIGN IN"} */}
                   Sign In
 
-                </button>
+                </div>
 
                 <h6 className=" md:text-xl w-full">
                   New User?{" "}

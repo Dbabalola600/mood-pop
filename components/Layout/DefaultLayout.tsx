@@ -3,6 +3,7 @@ import Link from "next/link";
 import SideBar from "../Navigation/SideBar";
 import Footer from "../Navigation/Footer";
 import NavBar from "../Navigation/NavBar";
+import BottomNavBar from "../Navigation/BottomNavBar";
 
 
 function DefaultLayout({ children }: { children?: JSX.Element }) {
@@ -10,7 +11,7 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
         <>
             <div className="grid lg:min-h-screen grid-rows-header bg-secondary ">
                 <div
-                    className="lg:hidden"
+                    // className="lg:hidden"
                 >
                     <NavBar />
                 </div>
@@ -40,8 +41,9 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
 
 
             </div>
-
+            <BottomNavBar/>
             <div>
+              
                 <Footer />
             </div>
 
