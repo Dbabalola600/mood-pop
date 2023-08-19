@@ -65,7 +65,7 @@ export default function SignUp() {
                     const body2 = {
                         UId: data._id
                     }
-                    // console.log(data._id)
+                    console.log(data._id)
                     const TokenRes = await fetch("/api/token/newEmailToken", { method: "POST", body: JSON.stringify(body2) })
                         .then(async res => {
                             if (res.status === 200) {
