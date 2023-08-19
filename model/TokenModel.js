@@ -21,7 +21,7 @@ const tokenSchema = new Schema({
         type: Date,
         required: true,
         default: Date.now,
-        expires: 60 // 1 minutes grace period
+        expires: 600 // 10 minutes grace period
     }
 });
 
