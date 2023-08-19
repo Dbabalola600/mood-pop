@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-import mood from "../../public/images/mood.png"
+import mood from "../../public/images/mood.svg"
 import { deleteCookie, hasCookie } from 'cookies-next'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
