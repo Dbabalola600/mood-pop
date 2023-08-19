@@ -16,12 +16,16 @@ export async function sendMail(subject, toEmail, otpText) {
     text: otpText,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      throw new Error(error);
-    } else {
-      console.log("Email Sent");
-      return true;
-    }
-  });
+  
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        throw new Error(error);
+      } else {
+        console.log("Email Sent");
+        return true;
+      }
+    });
+  })
+
 }
