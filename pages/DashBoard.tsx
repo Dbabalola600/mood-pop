@@ -8,7 +8,8 @@ type User = {
     _id: string,
     UserName: string,
     email: string,
-    isVerified: string
+    isVerified: string,
+    image: string
 }
 
 
@@ -43,6 +44,15 @@ export default function DashBoard() {
                 <div>
 
                     DashBoard {user?.UserName}
+
+
+                    {user?.image && (
+                        <img
+                            src={`${user.image}`}
+                            alt="User Profile Pic"
+                            style={{ maxWidth: "10%", height: "auto" }}
+                        />
+                    )}
                 </div>
 
             </>

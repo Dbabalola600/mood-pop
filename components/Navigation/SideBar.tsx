@@ -22,7 +22,7 @@ export default function UserSideBar() {
     ]
 
     return (
-        <div className=":h-screen  bg-white">
+        <div className=":h-screen dark:bg-black bg-white">
 
 
 

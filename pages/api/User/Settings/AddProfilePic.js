@@ -14,7 +14,7 @@ export default async function ProfilePic(req, res) {
 
         const update = await User.findById(id).updateOne({image: pic})
 
-        return res.status(200).json(update)
+        return res.status(200).json("yupp")
 
     } else {
 

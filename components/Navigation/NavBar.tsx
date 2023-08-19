@@ -31,10 +31,10 @@ export default function NavBar() {
 
         // setLoading(true)
 
-        const userCheck = hasCookie("NormUser")
+        const userCheck = hasCookie("USER")
 
         if (userCheck == true) {
-            deleteCookie('NormUser', { path: '/', domain: 'localhost' })
+            deleteCookie('USER', { path: '/', domain: 'localhost' })
 
             router.push('/')
 
@@ -44,7 +44,7 @@ export default function NavBar() {
     }
 
     return (
-        <Disclosure as="nav" className="bg-white">
+        <Disclosure as="nav" className=" dark:bg-black bg-white">
             {({ open }) => (
                 <>
                     <div className="mx-auto px-2 sm:px-6 lg:px-8  ">
@@ -77,10 +77,10 @@ export default function NavBar() {
 
                                         <Image
                                             src={mood}
-                                            width={34}
+                                            width={50}
                                             height={50}
                                             alt="mood"
-                                            onClick={() => router.push("/User/DashBoard")}
+                                            onClick={() => router.push("/DashBoard")}
                                         />
 
 
@@ -99,7 +99,7 @@ export default function NavBar() {
                                             height={50}
                                             width={50}
                                             alt="mood"
-                                            onClick={() => router.push("/User/DashBoard")}
+                                            onClick={() => router.push("/DashBoard")}
                                         />
 
 
@@ -122,6 +122,7 @@ export default function NavBar() {
                                 <button
                                     type="button"
                                     className=" hidden lg:block rounded-full  p-1 text-gray-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                    onClick={() => router.push("/Settings")}
                                 >
                                     <span className="sr-only">View notifications</span>
 
@@ -141,6 +142,7 @@ export default function NavBar() {
                                 <button
                                     type="button"
                                     className="rounded-full  p-1 text-gray-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                    onClick={logout}
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <BiLogOut

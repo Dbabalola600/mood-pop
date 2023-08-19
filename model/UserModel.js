@@ -6,8 +6,9 @@ import { Schema, model, models } from 'mongoose';
 
 const UserSchema = new Schema({
     image: {
-        type: String,
-        required: false
+        data: Buffer,
+        contentType: String,
+        // type: String
     },
     UserName: {
         type: String,

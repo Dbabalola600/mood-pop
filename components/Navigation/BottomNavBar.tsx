@@ -46,32 +46,32 @@ export default function BottomNavBar() {
     }
 
     return (
-        <div  className=" bg-white lg:hidden  sticky bottom-0">
+        <div className=" bg-white dark:bg-black lg:hidden  sticky bottom-0">
 
-            
-                <div className='grid grid-cols-4 gap-4 justify-items-center '>
-                    {Content.map((info, index) => (
-                        <Link
-                            href={info.link}
-                            key={index}
+
+            <div className='grid grid-cols-4 gap-4 justify-items-center '>
+                {Content.map((info, index) => (
+                    <Link
+                        href={info.link}
+                        key={index}
+                    >
+                        <div
+                            className="  cursor-pointer text-2xl hover:text-primary  rounded-lg px-3 py-5"
                         >
-                            <div
-                                className="  cursor-pointer text-2xl hover:text-primary rounded-lg px-3 py-5"
-                            >
 
-                                {info.icon === "MdSpaceDashboard" && <MdSpaceDashboard  />}
-                                {info.icon === "BsFillJournalBookmarkFill" && <BsFillJournalBookmarkFill />}
-                                {info.icon === "FaReadme" && <FaReadme />}
-                                {info.icon === "TbUserSearch" && <TbUserSearch />}
+                            {info.icon === "MdSpaceDashboard" && <MdSpaceDashboard />}
+                            {info.icon === "BsFillJournalBookmarkFill" && <BsFillJournalBookmarkFill />}
+                            {info.icon === "FaReadme" && <FaReadme />}
+                            {info.icon === "TbUserSearch" && <TbUserSearch />}
+                            
+                        </div>
+                    </Link>
+                ))}
 
-                            </div>
-                        </Link>
-                    ))}
-
-                </div>
+            </div>
 
 
-            
+
 
         </div>
     )

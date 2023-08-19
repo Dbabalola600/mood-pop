@@ -11,10 +11,16 @@ export default async function UserName(req, res) {
 
         const { id, name } = JSON.parse(req.body)
 
+        const isUser = await User.findOne({ UserName: name })
 
-        const update = await User.findById(id).updateOne({UserName: name})
+        if (isUser === null) {
+            const update = await User.findById(id).updateOne({ UserName: name })
 
-        return res.status(200).json(update)
+            return res.status(200).json(update)
+        } else {
+            return res.status(203).json("user exists")
+        }
+
 
     } else {
 
