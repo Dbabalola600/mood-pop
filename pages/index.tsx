@@ -6,12 +6,71 @@ import DefaultLayout from '../components/Layout/DefaultLayout'
 import Footer from '../components/Navigation/Footer'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { FormEventHandler, useEffect, useState } from 'react'
 
 
 export default function HomePage() {
+  const [isLoading, setLoading] = useState(false)
 
 
   const router = useRouter()
+
+
+  const connect = async () => {
+
+
+    setLoading(true)
+    const response = await fetch("/api/connect", { method: "GET" })
+      .then(res => res.json())
+
+
+    setLoading(false)
+  }
+
+
+
+  useEffect(() => {
+    connect()
+  }, [])
+
+
+  const login: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    const formElements = e.currentTarget.elements as typeof e.currentTarget.elements & {
+      firstname: HTMLInputElement
+    }
+    const form = e.currentTarget.elements as any
+
+    const body = {
+      user: form.item(0).value,
+      password: form.item(1).value,
+    }
+
+    const response = await fetch("/api/User/login", { method: "POST", body: JSON.stringify(body) })
+      .then(res => {
+        if (res.status === 200) {
+          router.push("/DashBoard")
+        }
+        if (res.status === 401) {
+          //wrong password
+        }
+        if (res.status === 402) {
+          //user doesn't exist
+        }
+
+        else {
+          //general error
+        }
+      })
+
+
+
+    setLoading(false)
+
+  }
+
+
 
 
   return (
@@ -42,9 +101,9 @@ export default function HomePage() {
 
             <form
               className="w-full space-y-12 py-20 px-10 bg-white text-black text-base md:text-xl md:rounded-xl"
-            // onSubmit={
-            //   login
-            // }
+            onSubmit={
+              login
+            }
             >
 
 
@@ -82,14 +141,14 @@ export default function HomePage() {
 
               <div className=" w-full  space-y-2">
 
-                <div className="w-full btn-primary btn  text-white"
-                  // type="submit"
-                  onClick={() => router.push("/DashBoard")}
-                >
-                  {/* {isLoading ? "Loading..." : "SIGN IN"} */}
-                  Sign In
+                <button className="w-full btn-primary btn  text-white"
+                  type="submit"
 
-                </div>
+                >
+                  {isLoading ? "Loading..." : "SIGN IN"}
+
+
+                </button>
 
                 <h6 className=" md:text-xl w-full">
                   New User?{" "}

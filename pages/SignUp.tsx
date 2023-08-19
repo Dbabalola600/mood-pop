@@ -5,9 +5,107 @@ import Image from 'next/image'
 import DefaultLayout from '../components/Layout/DefaultLayout'
 import Footer from '../components/Navigation/Footer'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState, FormEventHandler } from 'react'
+
+
+
+
+
+type Data = {
+    _id: string
+}
+
+
+type TokenData = {
+    userId: string,
+    token: string
+}
+
+
 
 
 export default function SignUp() {
+    const router = useRouter()
+
+    const [data, setData] = useState(null)
+    const [isLoading, setLoading] = useState(false)
+
+
+
+
+    const newadd: FormEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        const formElements = e.currentTarget.elements as typeof e.currentTarget.elements & {
+            firstname: HTMLInputElement
+        }
+        const form = e.currentTarget.elements as any
+
+        const body = {
+            email: form.item(0).value,
+            UserName: form.item(1).value,
+            password: form.item(2).value,
+
+        }
+
+
+
+        const response = await fetch("/api/User/NewUser", { method: "POST", body: JSON.stringify(body) })
+            .then(async res => {
+                if (res.status === 255) {
+                    //email exists
+                } if (res.status === 256) {
+                    //user exists
+                }
+                if (res.status === 200) {
+                    //generate token for email verification
+                    const data = await res.json() as Data;
+
+                    const body2 = {
+                        UId: data._id
+                    }
+                    // console.log(data._id)
+                    const TokenRes = await fetch("/api/token/newEmailToken", { method: "POST", body: JSON.stringify(body2) })
+                        .then(async res => {
+                            if (res.status === 200) {
+                                //send the email to the usr 
+                                const data = await res.json() as TokenData
+
+                                const body3 = {
+                                    mail: form.item(0).value,
+                                    title: data.token
+                                }
+                                const MailRes = await fetch("/api/mail/VerifyEmail", { method: "POST", body: JSON.stringify(body3) })
+                                    .then(res => {
+                                        if (res.status === 200) {
+                                            router.push("/")
+                                        }
+                                    })
+                            }
+                        })
+
+
+                }
+
+                //    else {
+                //         settoast({ message: " message", show: true })
+                //     }
+
+            }).catch(err => {
+                console.log(err)
+            })
+
+        setLoading(false)
+
+    }
+
+
+
+
+
+
+
     return (
 
         <>
@@ -35,9 +133,9 @@ export default function SignUp() {
 
                         <form
                             className="w-full space-y-12 py-20 px-10 bg-white text-black text-base md:text-xl md:rounded-xl"
-                        // onSubmit={
-                        //   login
-                        // }
+                            onSubmit={
+                                newadd
+                            }
                         >
 
 
@@ -87,8 +185,8 @@ export default function SignUp() {
 
                                 <button className="w-full btn-primary btn  text-white"
                                     type="submit">
-                                    {/* {isLoading ? "Loading..." : "SIGN IN"} */}
-                                    Sign In
+                                    {isLoading ? "Loading..." : "Create Account"}
+
 
                                 </button>
 

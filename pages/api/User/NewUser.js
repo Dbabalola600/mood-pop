@@ -46,7 +46,7 @@ export default async function NewUser(req, res) {
 
 
 
-                return res.status(200).json({ newbie });
+                return res.status(200).json(newbie );
             } else {
                 return res.status(255).json({ message: "email exists" })
             }

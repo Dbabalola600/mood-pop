@@ -22,7 +22,7 @@ const handler = async (req, res) => {
                     //mail
                     mail,
                     //context
-                   " please input the following "+ title
+                   "please input the following to verify your account:  "+ title
 
                 );
                 res.status(200).send("Success");
