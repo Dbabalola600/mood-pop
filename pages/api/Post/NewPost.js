@@ -12,14 +12,22 @@ export default async function NewPost(req, res) {
 
 
 
-        const {userId, post, category} = JSON.parse(req.body)
+        const {userId, post, category, date} = JSON.parse(req.body)
+
+
+        const FullDate = new Date()
+        let month = FullDate.toLocaleString('default', { month: 'long' })
+        let day = FullDate.getDate()
+        let year = FullDate.getFullYear()
+        let ShortDate = day + "-" + month + "-" + year
 
 
 
         const NewPost = await Post.create({
             userId: userId,
             post: post,
-            category: category
+            category: category,
+            date: ShortDate
         })
 
 

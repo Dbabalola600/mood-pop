@@ -18,6 +18,10 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+    date: {
+        type: String,
+
+    },
     expiresAt: {
         type: Date,
         required: true,

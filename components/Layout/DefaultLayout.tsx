@@ -59,7 +59,7 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
 
 
     useEffect(() => {
-        // checkUser()
+        checkUser()
     }, [])
 
 

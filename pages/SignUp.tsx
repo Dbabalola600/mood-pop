@@ -38,9 +38,7 @@ export default function SignUp() {
     const newadd: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const formElements = e.currentTarget.elements as typeof e.currentTarget.elements & {
-            firstname: HTMLInputElement
-        }
+      
         const form = e.currentTarget.elements as any
 
         const body = {

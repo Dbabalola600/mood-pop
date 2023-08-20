@@ -85,11 +85,12 @@ export default function NavBar() {
     }, [])
 
     return (
-        <Disclosure as="nav" className=" dark:bg-black bg-white">
+
+        <Disclosure as="nav" className="dark:bg-black bg-white fixed top-0 left-0 right-0 z-10">
             {({ open }) => (
                 <>
-                    <div className="mx-auto px-2 sm:px-6 lg:px-8  ">
-                        <div className="relative flex h-16 items-center justify-between">
+                    <div className="mx-auto px-2 sm:px-6 lg:px-8 ">
+                        <div className="relative flex h-16 items-center justify-between  ">
 
 
 
@@ -170,8 +171,8 @@ export default function NavBar() {
                                                                 src={`${user?.image}`}
                                                                 alt="User Profile Pic"
                                                                 className='h-6 w-6'
-                                                            // className="rounded-badge"
-                                                            style={{ maxWidth: "100%", height:"40px"  }}
+                                                                // className="rounded-badge"
+                                                                style={{ maxWidth: "100%", height: "40px" }}
                                                             />
                                                         </div>
                                                     </div>
@@ -198,7 +199,7 @@ export default function NavBar() {
                                         leaveFrom="transform opacity-100 scale-100"
                                         leaveTo="transform opacity-0 scale-95"
                                     >
-                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-400 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-400 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <div

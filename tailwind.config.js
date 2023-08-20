@@ -7,7 +7,9 @@ module.exports = {
       {
         myTheme: {
           primary: "rgba(4,19,187)",
-          secondary: "rgba(238,239,254)"
+          secondary: "rgba(238,239,254)",
+          specgray:"rgba(203,203,203)",
+          specpurple:"rgba(186,192,250)"
         }
       }
     ]
@@ -22,7 +24,9 @@ module.exports = {
       },
       colors: {
         primary: "rgba(4,19,187)",
-        secondary: "rgba(238,239,254)"
+        secondary: "rgba(238,239,254)",
+        specgray:"rgba(203,203,203)",
+        specpurple:"rgba(186,192,250)"
        },
     },
   },

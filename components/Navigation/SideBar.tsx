@@ -61,6 +61,7 @@ export default function UserSideBar() {
     ]
 
     return (
+        
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
             {user?.image === undefined ? (
