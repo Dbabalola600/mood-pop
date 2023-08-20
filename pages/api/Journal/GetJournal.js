@@ -16,7 +16,7 @@ export default async function GetJournal(req, res) {
         const JN = await Journal.findOne({ userId: id })
 
 
-        return res.status(200).json(JN)
+        return res.status(200).json(JN.note)
 
 
     } else {

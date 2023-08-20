@@ -3,6 +3,7 @@ import DefaultLayout from "../../components/Layout/DefaultLayout";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
 import imageCompression from "browser-image-compression";
+import CusHead from "../../components/Displays/CusHead";
 
 export default function UpdateAvatar() {
     const router = useRouter();
@@ -80,24 +81,39 @@ export default function UpdateAvatar() {
     return (
         <DefaultLayout>
             <form onSubmit={upload}>
+
+
+                <div
+                    className="mb-5"
+                >
+                    <CusHead
+                        title="Change Profile Picture"
+                    />
+                </div>
+
                 <div>
+
+
                     <div className="w-full">
                         <div className="form-control w-full mx-auto">
                             <label>
-                                <span className="label-text text-black text-2xl">Upload</span>
-                                <div className="text-sm text-gray-500 font-bold">
+                                <span className="label-text text-black text-2xl mb-2">Upload</span>
+                                {/* <div className="text-sm text-gray-500 font-bold">
                                     Only upload image files
-                                </div>
+                                </div> */}
                             </label>
                             <input
                                 type="file"
+                                accept="image/*"
                                 id="image"
-                                accept="image/*" // Allow only image files
-                                className="input input-bordered w-full input-primary"
+                                className="file-input file-input-bordered w-full file-input-primary"
                             />
                         </div>
                     </div>
                 </div>
+
+
+
                 <button
                     className="w-full btn-primary btn my-10"
                     type="submit"
