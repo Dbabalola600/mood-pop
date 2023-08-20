@@ -3,58 +3,46 @@ import DefaultLayout from "../../components/Layout/DefaultLayout";
 import UnLogged from "../../components/Layout/UnLogged";
 import TextInput from "../../components/inputs/TextInput";
 import { FormEventHandler, useState } from "react";
+import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 
-type Data = {
-    token: string
-}
+
 
 
 export default function ForgotPassword() {
     const router = useRouter()
-    const [isLoading, setLoading] = useState(false)
 
-    const gogoEmail: FormEventHandler<HTMLFormElement> = async (e) => {
+    const [isLoading, setLoading] = useState(false)
+    const token = getCookie("TEMPMAIL")
+
+
+    const woop: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         setLoading(true)
-
-
 
         const form = e.currentTarget.elements as any
 
         const body = {
-            email: form.item(0).value,
-
+            token: form.item(0).value
         }
 
 
-        const response = await fetch("/api/token/newPasswordToken", { method: "POST", body: JSON.stringify(body) })
-            .then(async res => {
+        const response = await fetch("/api/token/VerifyPasswordReset", { method: "POST", body: JSON.stringify(body) })
+            .then(res => {
                 if (res.status === 200) {
-                    //send the email to verify
-                    const data = await res.json() as Data;
-
-                    const body2 = {
-                        mail: form.item(0).value,
-                        title: data.token
-                    }
-                    const MailRes = await fetch("/api/mail/ResetPassword", { method: "POST", body: JSON.stringify(body2) })
-                        .then(res => {
-                            if (res.status === 200) {
-                                router.push("/ForgotPassword/EnterToken")
-                            }
-                        }).catch(err => {
-                            console.log(err)
-                        })
-
+                    router.push("/ForgotPassword/ResetPassword")
+                } if (res.status === 202) {
+                    //token doesnt exist
                 }
             }).catch(err => {
                 console.log(err)
             })
 
 
-        setLoading(false)
 
+
+
+        setLoading(false)
     }
 
 
@@ -72,13 +60,10 @@ export default function ForgotPassword() {
 
                         {/* form */}
                         <div>
-
-
-
                             <form
                                 className="w-full min-h-screen  space-y-[50px] py-20 px-10 bg-white text-black text-base md:text-xl md:rounded-xl"
                                 onSubmit={
-                                    gogoEmail
+                                    woop
                                 }
                             >
 
@@ -86,7 +71,7 @@ export default function ForgotPassword() {
                                 <div
                                     className='text-center font-extrabold text-primary text-7xl'
                                 >
-                                    Forgot Password
+                                    Put it in here
                                     <div
                                         className='font-normal text-2xl'
                                     >
@@ -96,8 +81,8 @@ export default function ForgotPassword() {
 
                                 <div className="mx-auto  w-full ">
                                     <TextInput
-                                        placeholder="Email"
-                                        name="Enter email associated with your account"
+                                        placeholder="Enter code"
+                                        name="Enter code sent"
                                         type='text'
 
                                     />
@@ -124,9 +109,9 @@ export default function ForgotPassword() {
                                     </button>
 
                                     <h6 className=" md:text-xl w-full">
-                                        Remeber Password?{" "}
+                                        Did not recieve code?{" "}
                                         <span className=" hover:underline text-primary">
-                                            <Link href="/">Login</Link>
+                                            <Link href="/ForgotPassword">Use another Email</Link>
                                         </span>
                                     </h6>
                                 </div>

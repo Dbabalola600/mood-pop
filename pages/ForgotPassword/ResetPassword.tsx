@@ -4,58 +4,55 @@ import UnLogged from "../../components/Layout/UnLogged";
 import TextInput from "../../components/inputs/TextInput";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
-type Data = {
-    token: string
-}
+
 
 
 export default function ForgotPassword() {
     const router = useRouter()
-    const [isLoading, setLoading] = useState(false)
 
-    const gogoEmail: FormEventHandler<HTMLFormElement> = async (e) => {
+    const [isLoading, setLoading] = useState(false)
+    const token = getCookie("TEMPMAIL")
+
+
+
+
+
+    const woop: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         setLoading(true)
-
-
 
         const form = e.currentTarget.elements as any
 
         const body = {
-            email: form.item(0).value,
-
+            pass: form.item(0).value,
+            cpass: form.item(1).value,
+            token: token
         }
 
 
-        const response = await fetch("/api/token/newPasswordToken", { method: "POST", body: JSON.stringify(body) })
-            .then(async res => {
+        const response = await fetch("/api/User/ResetPassword", { method: "POST", body: JSON.stringify(body) })
+            .then(res => {
                 if (res.status === 200) {
-                    //send the email to verify
-                    const data = await res.json() as Data;
-
-                    const body2 = {
-                        mail: form.item(0).value,
-                        title: data.token
-                    }
-                    const MailRes = await fetch("/api/mail/ResetPassword", { method: "POST", body: JSON.stringify(body2) })
-                        .then(res => {
-                            if (res.status === 200) {
-                                router.push("/ForgotPassword/EnterToken")
-                            }
-                        }).catch(err => {
-                            console.log(err)
-                        })
-
+                    router.push("/")
+                } if (res.status === 202) {
+                    //mismatch
                 }
             }).catch(err => {
                 console.log(err)
             })
 
 
-        setLoading(false)
 
+
+
+        setLoading(false)
     }
+
+
+
+
 
 
     return (
@@ -77,16 +74,16 @@ export default function ForgotPassword() {
 
                             <form
                                 className="w-full min-h-screen  space-y-[50px] py-20 px-10 bg-white text-black text-base md:text-xl md:rounded-xl"
-                                onSubmit={
-                                    gogoEmail
-                                }
+                              onSubmit={
+                                woop
+                              }
                             >
 
 
                                 <div
                                     className='text-center font-extrabold text-primary text-7xl'
                                 >
-                                    Forgot Password
+                                    Put it in here
                                     <div
                                         className='font-normal text-2xl'
                                     >
@@ -96,12 +93,22 @@ export default function ForgotPassword() {
 
                                 <div className="mx-auto  w-full ">
                                     <TextInput
-                                        placeholder="Email"
-                                        name="Enter email associated with your account"
+                                        placeholder="*****"
+                                        name="New Password"
                                         type='text'
 
                                     />
                                 </div>
+
+                                <div className="mx-auto  w-full ">
+                                    <TextInput
+                                        placeholder="******"
+                                        name="Confirm Password"
+                                        type='text'
+
+                                    />
+                                </div>
+
 
 
 
@@ -124,9 +131,9 @@ export default function ForgotPassword() {
                                     </button>
 
                                     <h6 className=" md:text-xl w-full">
-                                        Remeber Password?{" "}
+                                        Did not recieve code?{" "}
                                         <span className=" hover:underline text-primary">
-                                            <Link href="/">Login</Link>
+                                            <Link href="/ForgotPassword">Use another Email</Link>
                                         </span>
                                     </h6>
                                 </div>
