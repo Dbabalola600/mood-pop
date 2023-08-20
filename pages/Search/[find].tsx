@@ -63,7 +63,7 @@ export default function Found() {
                 ) : (
                     <div>
 
-                        {user[0]?.email}
+                        {user[0]?.email}{"  "}
                         {user[0]?.UserName}
 
                     </div>
