@@ -4,13 +4,14 @@ import { getCookie } from "cookies-next";
 import { CgProfile } from "react-icons/cg"
 import LoadFeed from "../components/Loading/LoadFeed";
 import SearchBar from "../components/inputs/SearchBar";
-import { MdSpaceDashboard, MdNotifications } from "react-icons/md"
-import { BsFillJournalBookmarkFill } from "react-icons/bs"
+import { MdSpaceDashboard, MdNotifications, MdPostAdd } from "react-icons/md"
+import { BsFillJournalBookmarkFill, BsPencilSquare } from "react-icons/bs"
 import { FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
 import Link from "next/link";
 import Feed from "../components/Displays/Feed";
 import CusHead from "../components/Displays/CusHead";
+import {TfiWrite} from "react-icons/tfi"
 
 
 
@@ -73,8 +74,8 @@ export default function DashBoard() {
 
 
     const Content = [
-        { title: "New Post", link: "/Post", icon: "BsFillJournalBookmarkFill" },
-        { title: "Feed", link: "/Feed", icon: "FaReadme" },
+        { title: "New Post", link: "/Post", icon: "MdPostAdd" },
+        { title: "New Journal", link: "/Journal", icon: "BsPencilSquare" },
         { title: "Search", link: "/Search", icon: "TbUserSearch" },
         { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
@@ -101,7 +102,7 @@ export default function DashBoard() {
                         <div>
 
                             <div
-                                className="lg:mx-5 grid lg:grid-cols-2 grid-cols-1 "
+                                className="lg:mx-5 grid lg:grid-cols-2 grid-cols-1 mb-5 lg:mb-0 "
                             >
                                 <div
                                     className="text-specgray lg:text-5xl text-2xl font-bold"
@@ -155,8 +156,8 @@ export default function DashBoard() {
                                                 <div
                                                     className="text-2xl   "
                                                 >
-                                                    {info.icon === "MdSpaceDashboard" && <MdSpaceDashboard />}
-                                                    {info.icon === "BsFillJournalBookmarkFill" && <BsFillJournalBookmarkFill />}
+                                                    {info.icon === "MdPostAdd" && <MdPostAdd />}
+                                                    {info.icon === "BsPencilSquare" && <BsPencilSquare />}
                                                     {info.icon === "FaReadme" && <FaReadme />}
                                                     {info.icon === "TbUserSearch" && <TbUserSearch />}
                                                     {info.icon === "MdNotifications" && <MdNotifications color='gray-400' />}
