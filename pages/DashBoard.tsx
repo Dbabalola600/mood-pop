@@ -93,7 +93,7 @@ export default function DashBoard() {
                 <div>
                     {isLoading ? (
                         <div>
-                            {/* <LoadFeed /> */}
+                            <LoadFeed />
                         </div>
                     ) : (
 
