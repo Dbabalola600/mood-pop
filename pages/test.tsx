@@ -1,4 +1,5 @@
 import DefaultLayout from "../components/Layout/DefaultLayout";
+import LoadFeed from "../components/Loading/LoadFeed";
 import AudioRecorder from "../components/inputs/AudioRecorder";
 
 
@@ -17,7 +18,10 @@ export default function Test() {
                 >
                     this isowbfwfwifivbf
 
-                    <AudioRecorder/>
+                    {/* <AudioRecorder/> */}
+
+
+                    <LoadFeed/>
                 </div>
             </DefaultLayout>
 
