@@ -24,11 +24,14 @@ export default async function Login(req, res) {
         if (existingUser === null) {
             const existingUser_mail = await User.findOne({ email: user })
 
+            console.log(existingUser_mail.image)
+
             if (existingUser_mail === null) {
                 return res.status(402).json("not a user")
             } else {
                 if (password === existingUser_mail.password) {
                     setCookie("USER", existingUser_mail._id, { req, res, maxAge: 86400 })
+
                     return res.status(200).json(existingUser_mail)
                 } else {
                     return res.status(401).json("incorrect password")
@@ -41,7 +44,10 @@ export default async function Login(req, res) {
             //check password 
 
             if (password === existingUser.password) {
+
                 setCookie("USER", existingUser._id, { req, res, maxAge: 86400 })
+
+
                 return res.status(200).json(existingUser)
             } else {
                 return res.status(401).json("incorrect password")
