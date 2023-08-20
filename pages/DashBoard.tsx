@@ -79,7 +79,7 @@ export default function DashBoard() {
 
     const Content = [
         { title: "New Post", link: "/Post", icon: "MdPostAdd" },
-        { title: "New Journal", link: "/Journal", icon: "BsPencilSquare" },
+        { title: "New Journal", link: "/Journal/CreateNote", icon: "BsPencilSquare" },
         { title: "Search", link: "/Search", icon: "TbUserSearch" },
         { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
