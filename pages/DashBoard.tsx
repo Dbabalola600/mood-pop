@@ -11,7 +11,7 @@ import { TbUserSearch } from "react-icons/tb"
 import Link from "next/link";
 import Feed from "../components/Displays/Feed";
 import CusHead from "../components/Displays/CusHead";
-import {TfiWrite} from "react-icons/tfi"
+import { TfiWrite } from "react-icons/tfi"
 
 
 
@@ -37,9 +37,12 @@ type Post = {
 export default function DashBoard() {
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User | null>(null)
-    const [post, setPost] = useState<Post []>([])
+    const [post, setPost] = useState<Post[]>([])
 
 
+
+
+    let postNum = 0
     const showinfo = async () => {
         setLoading(true)
         const token = getCookie("USER")
@@ -58,6 +61,7 @@ export default function DashBoard() {
         const PostResponse = await fetch("/api/Post/GetPost", { method: "POST", body: JSON.stringify(body2) })
             .then(res => res.json()) as Post[]
         setPost(PostResponse)
+
 
 
         setLoading(false)
@@ -82,11 +86,7 @@ export default function DashBoard() {
     ]
 
 
-
-    const journal = [
-        { content: "yhhd", date: "today" },
-        { content: "seconf", date: "yesterday" }
-    ]
+    //   if(post[0] === undef) 
 
     return (
         <DefaultLayout>
@@ -180,27 +180,47 @@ export default function DashBoard() {
                             </div>
 
 
-                            <div
-                                className="lg:mx-5 pt-10"
-                            >
 
-                                {post.map((info, index) => (
+
+                            {/* posts section */}
+
+
+                            {post[0] === undefined ? (
+                                <div>
                                     <div
-                                    key={index}
+                                        className="text-center text-3xl font-bold "
                                     >
+                                        you should post something
 
-                                        <Feed
-                                            content={info.post}
-                                            date={info.date}
-                                            image={user?.image}
-                                            name={user?.UserName}
-                                        />
+                                        nonye give me an image to add here please
 
                                     </div>
-                                ))}
+
+                                </div>
+                            ) : (
+                                <div
+                                    className="lg:mx-5 pt-10"
+                                >
+
+                                    {post.map((info, index) => (
+                                        <div
+                                            key={index}
+                                        >
+
+                                            <Feed
+                                                content={info.post}
+                                                date={info.date}
+                                                image={user?.image}
+                                                name={user?.UserName}
+                                            />
+
+                                        </div>
+                                    ))}
 
 
-                            </div>
+                                </div>
+                            )}
+
 
 
                         </div>

@@ -24,7 +24,7 @@ export default async function Login(req, res) {
         if (existingUser === null) {
             const existingUser_mail = await User.findOne({ email: user })
 
-            console.log(existingUser_mail.image)
+
 
             if (existingUser_mail === null) {
                 return res.status(402).json("not a user")

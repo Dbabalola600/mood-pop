@@ -20,7 +20,7 @@ export default async function GetUser(req, res) {
         const person = await User.findById(id)
 
 
-        // console.log(person.image)
+
 
         return res.status(200).json(person)
 
