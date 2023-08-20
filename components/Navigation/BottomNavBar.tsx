@@ -6,16 +6,18 @@ import Link from 'next/link'
 import { deleteCookie, hasCookie } from 'cookies-next'
 import { useRouter } from 'next/router'
 
-import { MdSpaceDashboard } from "react-icons/md"
+import { MdSpaceDashboard, MdNotifications } from "react-icons/md"
 import { BsFillJournalBookmarkFill } from "react-icons/bs"
 import { FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
+
 
 const Content = [
     { link: "/DashBoard", icon: "MdSpaceDashboard" },
     { link: "/Journal", icon: "BsFillJournalBookmarkFill" },
     { link: "/Feed", icon: "FaReadme" },
-    { link: "/Search", icon: "TbUserSearch" }
+    { link: "/Search", icon: "TbUserSearch" },
+    {link: "/Notifications", icon:"MdNotifications"}
 
 ]
 
@@ -46,10 +48,10 @@ export default function BottomNavBar() {
     }
 
     return (
-        <div className=" bg-white dark:bg-black lg:hidden  sticky bottom-0">
+        <div className=" bg-white dark:bg-black lg:hidden  text-gray-400 sticky bottom-0">
 
 
-            <div className='grid grid-cols-4 gap-4 justify-items-center '>
+            <div className='grid grid-cols-5 gap-4 justify-items-center '>
                 {Content.map((info, index) => (
                     <Link
                         href={info.link}
@@ -63,6 +65,7 @@ export default function BottomNavBar() {
                             {info.icon === "BsFillJournalBookmarkFill" && <BsFillJournalBookmarkFill />}
                             {info.icon === "FaReadme" && <FaReadme />}
                             {info.icon === "TbUserSearch" && <TbUserSearch />}
+                            {info.icon === "MdNotifications" && <MdNotifications  color='gray-400'/>}
                             
                         </div>
                     </Link>

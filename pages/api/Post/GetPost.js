@@ -1,11 +1,8 @@
+import Post from "../../../model/PostModel";
 import connectMongo from "../../../utils/connectMongo";
 import User from "../../../model/UserModel";
 
-
-
-
-
-export default async function GetUser(req, res) {
+export default async function NewPost(req, res) {
     if (req.method === "POST") {
 
 
@@ -14,20 +11,20 @@ export default async function GetUser(req, res) {
         console.log('CONNECTED TO MONGO');
 
 
-        const { id } = JSON.parse(req.body)
+
+        const {userId} = JSON.parse(req.body)
 
 
-        const person = await User.findById(id)
+
+       const Thing = await Post.find({userId: userId})
 
 
-        // console.log(person.image)
-
-        return res.status(200).json(person)
+        return res.status(200).json(Thing)
 
 
-    } else {
+    }else{
         return (
             res.status(400).json("error")
         )
     }
-}
+} 

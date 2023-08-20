@@ -4,14 +4,71 @@ import SideBar from "../Navigation/SideBar";
 import Footer from "../Navigation/Footer";
 import NavBar from "../Navigation/NavBar";
 import BottomNavBar from "../Navigation/BottomNavBar";
+import { getCookie, hasCookie } from "cookies-next";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
+
+type User = {
+    _id: string,
+    UserName: string,
+    email: string,
+    isVerified: boolean,
+    image: string
+}
 
 function DefaultLayout({ children }: { children?: JSX.Element }) {
+    const [user, setUser] = useState<User | null>(null)
+    const router = useRouter()
+
+    const showinfo = async () => {
+
+
+        const token = getCookie("USER")
+        const body = {
+            id: token
+        }
+
+        const response = await fetch("/api/User/GetUser", { method: "POST", body: JSON.stringify(body) })
+            .then(res => res.json()) as User
+        setUser(response)
+
+
+        // if (response.isVerified === false) {
+        //     router.push("/Verification/VerifyEmail")
+        // }
+    }
+
+
+
+
+    useEffect(() => {
+        showinfo()
+
+    }, [])
+
+
+    function checkUser() {
+        const userCheck = hasCookie("USER")
+        if (userCheck == false) {
+            router.push("/")
+        }
+    }
+
+
+
+
+    useEffect(() => {
+        checkUser()
+    }, [])
+
+
+
     return (
         <>
             <div className="grid lg:min-h-screen grid-rows-header bg-secondary ">
                 <div
-                    // className="lg:hidden"
+                // className="lg:hidden"
                 >
                     <NavBar />
                 </div>
@@ -41,9 +98,9 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
 
 
             </div>
-            <BottomNavBar/>
+            <BottomNavBar />
             <div>
-              
+
                 <Footer />
             </div>
 
