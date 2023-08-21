@@ -4,6 +4,9 @@ import UnLogged from "../../components/Layout/UnLogged";
 import TextInput from "../../components/inputs/TextInput";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
+import forgot_password from "../../public/forgot_password.svg"
+import Image from "next/image";
+
 
 type Data = {
     token: string
@@ -147,14 +150,12 @@ export default function ForgotPassword() {
                             <div
                                 className=' flex justify-center my-40 '
                             >
-                                {/* <Image
-                src={logo}
-                className='rounded-sm'
-              /> */}
+                                <Image
+                                    src={forgot_password}
+                                    className='rounded-sm'
+                                />
 
-                                <div>
-                                    image
-                                </div>
+                                
                             </div>
 
                         </div>

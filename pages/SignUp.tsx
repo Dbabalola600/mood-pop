@@ -8,7 +8,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, FormEventHandler } from 'react'
 import UnLogged from '../components/Layout/UnLogged'
-
+import welcome_cats from "../public/welcome_cats.svg"
 
 
 
@@ -38,7 +38,7 @@ export default function SignUp() {
     const newadd: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         setLoading(true)
-      
+
         const form = e.currentTarget.elements as any
 
         const body = {
@@ -113,7 +113,7 @@ export default function SignUp() {
 
 
                 <div
-            
+
                 >
 
                     <div
@@ -210,14 +210,11 @@ export default function SignUp() {
                             <div
                                 className=' flex justify-center my-40 '
                             >
-                                {/* <Image
-                src={logo}
-                className='rounded-sm'
-              /> */}
+                                <Image
+                                    src={welcome_cats}
+                                    className='rounded-sm'
+                                />
 
-                                <div>
-                                    image
-                                </div>
                             </div>
 
                         </div>

@@ -8,7 +8,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEventHandler, useEffect, useState } from 'react'
 import UnLogged from '../components/Layout/UnLogged'
-
+import sign_in from "../public/sign_in.svg"
 
 export default function HomePage() {
   const [isLoading, setLoading] = useState(false)
@@ -184,14 +184,12 @@ export default function HomePage() {
               <div
                 className=' flex justify-center my-40 '
               >
-                {/* <Image
-                src={logo}
+                <Image
+                src={sign_in}
                 className='rounded-sm'
-              /> */}
+              />
 
-                <div>
-                  image
-                </div>
+               
               </div>
 
             </div>
