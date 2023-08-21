@@ -38,12 +38,21 @@ export default async function NewPost(req, res) {
         const FollowPost = await Post.find({ userId: { $in: FollowId } });
 
 
+        const FullDets = await Promise.all(FollowPost.map(async (post) => {
+            const peeps = await User.findById(post.userId)
+            return {
+                post,
+                user: peeps
+            }
+
+        }))
 
 
 
 
-      
-        return res.status(200).json(FollowPost)
+        return res.status(200).json(
+            FullDets
+        )
 
 
     } else {

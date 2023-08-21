@@ -5,10 +5,11 @@ type FeedProps = {
     name: string | any,
     date: string | any,
     content: string | any
+    title: any
 }
 
 
-export default function Feed(props: FeedProps) {
+export default function PostFeed(props: FeedProps) {
     return (
         <div
             className="bg-white rounded-t-md rounded-b-xl mb-5 "
@@ -55,10 +56,15 @@ export default function Feed(props: FeedProps) {
                             </div>
 
                             <span
-                                className="mx-6 pt-5 text-black  "
+                                className="mx-6 pt-2 text-black  "
                             >
 
                                 {props.name}
+                                <div
+                                    className="text-specgray"
+                                >
+                                    {props.title}
+                                </div>
                             </span>
 
 

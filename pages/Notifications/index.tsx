@@ -1,11 +1,14 @@
 import CusHead from "../../components/Displays/CusHead";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
 import Requests from "./Requests";
+import Unread from "./Unread";
 
 
 
 
 export default function Notifications() {
+
+
     return (
         <DefaultLayout>
             <div>
@@ -18,21 +21,24 @@ export default function Notifications() {
                 <hr className="mt-5 " />
 
                 <div
-                className="mt-5"
+                    className="mt-5"
                 >
 
                     <div>
                         <div
                             className="text-black text-xl"
                         >
-                            Requets
+                            New Requests
                         </div>
                         <div
                             className=" bg-primary h-1 w-1/2"
                         />
                     </div>
-                    <Requests />
+                    <Unread />
                 </div>
+
+
+
 
 
             </div>

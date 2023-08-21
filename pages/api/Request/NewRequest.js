@@ -20,22 +20,32 @@ export default async function NewRequest(req, res) {
 
 
         //person recieving request
-        const Person_Rec = await Request.findOne({userId: id})
-
-        //updating the reciever of the request
-        // const newRequest = await Request.updateOne(
-        //     { _id: Person_Rec._id },
-        //     { $push: { new: { $each: [user], $position: 0 } } },
-        //     { new: true }
-        // ).exec()
+        const Person_Rec = await Request.findOne({ userId: id })
 
 
-        const newRequest = await Request.create({
-            userId: id,  //person recieving 
-            from: user
-        })
 
-        return res.status(200).json(newRequest)
+        if (Person_Rec === null) {
+            const newRequest = await Request.create({
+                userId: id,  //person recieving 
+                from: user
+            })
+
+            return res.status(200).json(newRequest)
+
+        } else{
+            if (Person_Rec.from === user) {
+                return res.status(202).json("already sent")
+            } else {
+                const newRequest = await Request.create({
+                    userId: id,  //person recieving 
+                    from: user
+                })
+                return res.status(200).json(newRequest)
+            }
+        }
+        
+        
+        
 
 
 

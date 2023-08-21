@@ -43,7 +43,7 @@ export default function DashBoard() {
 
 
 
-    let postNum = 0
+
     const showinfo = async () => {
         setLoading(true)
         const token = getCookie("USER")
@@ -145,9 +145,18 @@ export default function DashBoard() {
                                 </div>
                             ) : (
                                 <div
-                                    className="lg:mx-5 pt-10"
+                                    className="lg:mx-5 pt-5"
                                 >
 
+                                    <div
+                                        className="mb-6 text-black text-2xl font-bold"
+                                    >
+                                        Your Posts
+                                        <div
+                                            className="w-[150px] bg-primary h-1 rounded-full"
+                                        />
+                                    </div>
+                                    
                                     {post.map((info, index) => (
                                         <div
                                             key={index}

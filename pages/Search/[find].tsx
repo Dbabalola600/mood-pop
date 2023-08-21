@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
 import { useEffect, useState } from "react";
 import LoadFeed from "../../components/Loading/LoadFeed";
+import CusHead from "../../components/Displays/CusHead";
+import UserSearchResult from "../../components/Displays/UserSearchResult";
+import { getCookie } from "cookies-next";
 
 
 
@@ -14,13 +17,19 @@ type User = {
     image: string
 }
 
+type Data = {
+    _id: string
+    userId: string
+    from: string
+}
+
 
 
 
 export default function Found() {
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User[]>([])
-
+    const token = getCookie("USER")
     const router = useRouter()
     let ssd = router.query
 
@@ -37,7 +46,7 @@ export default function Found() {
 
         setUser(response)
 
-        console.log(response)
+        // console.log(response)
 
         setLoading(false)
     }
@@ -51,27 +60,111 @@ export default function Found() {
 
     }, [])
 
+
+
+
+    const SendReq = async (id: any) => {
+
+        const body = {
+            user: token,
+            id: id
+        }
+        const reponse = await fetch("/api/Request/NewRequest", { method: "POST", body: JSON.stringify(body) })
+            .then(async res => {
+                if (res.status === 200) {
+                    //send notification
+                    const data = await res.json() as Data;
+
+                    const body2 = {
+                        user: id,
+                        cat: "request",
+                        id: data._id
+                    }
+                    const NotiRes = await fetch("/api/Notification/NewNotification", { method: "POST", body: JSON.stringify(body2) })
+                        .then(res => {
+                            if (res.status === 200) {
+                                router.push("/DashBoard")
+
+                                //send email notification
+                            }
+                        }).catch(err => {
+                            console.log(err)
+                        })
+
+
+
+
+
+                } if (res.status === 202) {
+                    console.log("alreadysent")
+
+                }
+            })
+
+
+    }
+
     return (
         <DefaultLayout>
             <div>
-                Found {ssd.find}
+
+                <div
+                    className="mb-5"
+                >
+                    <CusHead
+                        title={`Search Result for ${ssd.find}`}
+                    />
+                </div>
+
 
                 {isLoading ? (
                     <div>
                         <LoadFeed />
                     </div>
                 ) : (
+
+
+
+
+
                     <div>
 
-                        {user[0]?.email}{"  "}
-                        {user[0]?.UserName}
+
+
+                        {user[0] === undefined ? (
+                            <div>
+                                nufin
+
+                            </div>
+
+                        ) : (
+                            <div>
+
+                                {user.map((info, index) => (
+                                    <div
+                                        key={index}
+                                    >
+
+                                        <UserSearchResult
+                                            image={info.image}
+                                            name={info.UserName}
+                                            clicky={() => SendReq(info._id)}
+                                        />
+
+
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+
+
+
+
 
                     </div>
                 )}
-
             </div>
-
-
         </DefaultLayout>
     )
 }
