@@ -1,23 +1,19 @@
-
-
-
 import { MouseEventHandler } from "react"
 import { CgProfile } from "react-icons/cg"
 
 type MyProps = {
     image: any
     name: any
-    Acceptclicky: MouseEventHandler<HTMLDivElement> | any,
-    Declineclicky: MouseEventHandler<HTMLDivElement> | any
+    clicky: MouseEventHandler<HTMLDivElement> | any
 
 }
 
 
-export default function RequestNotif(props: MyProps) {
+export default function FollowingResult(props: MyProps) {
     return (
 
         <div
-            className="bg-white pt-5 pb-5 px-5 lg:h-[100px] h-[160px] mb-5 rounded-lg"
+            className="bg-white pt-5 pb-5 px-5 h-[100px] mb-5 rounded-lg"
         >
             {props.image === undefined ? (
                 <div
@@ -54,36 +50,16 @@ export default function RequestNotif(props: MyProps) {
             </span>
 
 
-            <a
-                className="grid lg:grid-cols-2  lg:w-1/2 text-center gap-4 float-right grid-rows-2"
+            <div
+                className="float-right bg-primary text-white  p-3 rounded-full cursor-pointer dark:bg-primary dark:text-white hover:bg-black "
             >
-
-                <div
-                    className="float-right bg-green-500 text-white  p-3 rounded-full cursor-pointer dark:bg-green-500 dark:text-white hover:bg-black "
+                <button
+                    onClick={props.clicky}
                 >
-                    <button
-                        onClick={props.Acceptclicky}
-                    >
-                        Accept
-                    </button>
+                    Delete
+                </button>
 
-                </div>
-
-                <div
-                    className="float-right bg-red-500 text-white  p-3 rounded-full cursor-pointer dark:bg-red-500 dark:text-white hover:bg-black "
-                >
-                    <button
-                        onClick={props.Declineclicky}
-                    >
-                        Decline
-                    </button>
-
-                </div>
-
-            </a>
-
-
-
+            </div>
         </div>
 
     )

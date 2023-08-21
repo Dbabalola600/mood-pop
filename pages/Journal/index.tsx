@@ -99,7 +99,7 @@ export default function Journal() {
 
 
                 <div
-                className="mt-5"
+                    className="mt-5"
                 >
                     <JournalSearchBar />
                 </div>
@@ -121,26 +121,41 @@ export default function Journal() {
                                 make sum
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-6">
 
 
-
-
-                                {journal.map((info, index) => (
+                            <div>
+                                <div
+                                    className="mb-6 text-black text-2xl font-bold"
+                                >
+                                    Your Journal Entries
                                     <div
-                                        key={index}
-                                    >
-                                        <JournalFeed
-                                            id={info.id}
-                                            date={info.Date}
-                                            title={info.title}
-                                        />
+                                        className="w-[150px] bg-primary h-1 rounded-full"
+                                    />
+                                </div>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-6">
 
-                                    </div>
 
-                                ))}
+
+
+
+                                    {journal.map((info, index) => (
+                                        <div
+                                            key={index}
+                                        >
+                                            <JournalFeed
+                                                id={info.id}
+                                                date={info.Date}
+                                                title={info.title}
+                                            />
+
+                                        </div>
+
+                                    ))}
+
+                                </div>
 
                             </div>
+
                         )}
 
 

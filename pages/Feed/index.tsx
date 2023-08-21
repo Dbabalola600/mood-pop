@@ -129,10 +129,7 @@ export default function Feed() {
                                     <div
                                         className="text-center text-3xl font-bold "
                                     >
-                                        you should post something
-
-                                        nonye give me an image to add here please
-
+                                        Not following anyone
                                     </div>
 
                                 </div>
@@ -156,11 +153,11 @@ export default function Feed() {
                                         >
 
                                             <PostFeed
-                                               content={info.post.post}
-                                               date={info.post.date}
-                                               image={info.user.image}
-                                               name={info.user.UserName}
-                                               title={info.post.category}
+                                                content={info.post.post}
+                                                date={info.post.date}
+                                                image={info.user.image}
+                                                name={info.user.UserName}
+                                                title={info.post.category}
                                             />
 
                                         </div>

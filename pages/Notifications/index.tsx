@@ -18,7 +18,7 @@ export default function Notifications() {
                     />
                 </div>
 
-                <hr className="mt-5 " />
+                {/* <hr className="mt-5 " /> */}
 
                 <div
                     className="mt-5"
