@@ -15,14 +15,14 @@ export default async function NewNotification(req, res) {
 
         const { user, cat, id } = JSON.parse(req.body)
 
-
+        //person recieving notification
         const Person = await Notification.findOne({ userId: user })
 
 
-
+        //notification details
         const update = {
             category: cat,
-            id: id
+            id: id  // request id 
         }
 
 

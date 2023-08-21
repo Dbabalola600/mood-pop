@@ -12,25 +12,25 @@ export default async function AcceptRequest(req, res) {
         await connectMongo();
         console.log('CONNECTED TO MONGO');
 
-        const { user, id } = JSON.parse(req.body)
+        const { id } = JSON.parse(req.body)
 
-        const Person = await Request.findOne({ userId: user })
+        // const Person = await Request.findOne({ userId: user })
 
-        const IdStruct = []
+        // const IdStruct = []
 
-        for (let i = 0; i < Person.new.length; i++) {
-            if (id !== Person.new[i]) {
-                IdStruct.push(Person.new[i])
-            }
+        // for (let i = 0; i < Person.new.length; i++) {
+        //     if (id !== Person.new[i]) {
+        //         IdStruct.push(Person.new[i])
+        //     }
 
-        }
+        // }
 
-        const NewReqaust = await Request.findById(Person._id).updateOne({ new: IdStruct })
+        const delRequest = await Request.findByIdAndDelete({_id: id})
 
 
 
         return res.status(200).json(
-            NewReqaust
+            delRequest
         )
 
 

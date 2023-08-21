@@ -5,13 +5,14 @@ import { CgProfile } from "react-icons/cg"
 import LoadFeed from "../components/Loading/LoadFeed";
 import SearchBar from "../components/inputs/SearchBar";
 import { MdSpaceDashboard, MdNotifications, MdPostAdd } from "react-icons/md"
-import { BsFillJournalBookmarkFill, BsPencilSquare } from "react-icons/bs"
+import { BsFillJournalBookmarkFill, BsPencilSquare, BsPeopleFill } from "react-icons/bs"
 import { FaHandsHelping, FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
 import Link from "next/link";
 import Feed from "../components/Displays/Feed";
 import CusHead from "../components/Displays/CusHead";
 import { TfiWrite } from "react-icons/tfi"
+import UserDash from "../components/Displays/UserDash";
 
 
 
@@ -77,13 +78,7 @@ export default function DashBoard() {
 
 
 
-    const Content = [
-        { title: "New Post", link: "/Post", icon: "MdPostAdd" },
-        { title: "New Journal", link: "/Journal/CreateNote", icon: "BsPencilSquare" },
-        { title: "Seek Help", link: "/Resources/SeekHelp", icon: "FaHandsHelping" },
-        { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
-    ]
 
 
     //   if(post[0] === undef) 
@@ -124,60 +119,11 @@ export default function DashBoard() {
 
                             </div>
 
+                            <div>
 
-                            <div
-                                className="bg-white w-full h-1/2 pt-2 pl-5 pr-5 pb-2 lg:rounded-full rounded-3xl"
-                            >
-                                <div
-                                    className="pl-5"
-                                >
-                                    What would you like to do?
-                                </div>
-
-
-
-
-                                <hr className="pt-2 pl-5 pr-5 pb-2" />
-
-
-
-                                < div
-                                    className=" pl-5 pr-5  text-gray-500 grid grid-cols-4 lg:overflow-x-hidden  gap-4 "
-                                >
-
-                                    {Content.map((info, index) => (
-                                        <Link
-                                            href={info.link}
-                                            key={index}
-                                        >
-                                            <div
-                                                className=" break-words cursor-pointer  hover:text-primary  grid grid-cols-2 gap-x-0  w-[90px]  "
-                                            >
-                                                <div
-                                                    className="text-2xl   "
-                                                >
-                                                    {info.icon === "MdPostAdd" && <MdPostAdd />}
-                                                    {info.icon === "BsPencilSquare" && <BsPencilSquare />}
-                                                    {info.icon === "FaReadme" && <FaReadme />}
-                                                    {info.icon === "FaHandsHelping" && <FaHandsHelping />}
-                                                    {info.icon === "MdNotifications" && <MdNotifications color='gray-400' />}
-
-                                                </div>
-                                                <div
-                                                    className="text-center hidden lg:block text-[10px]  "
-                                                >
-                                                    {info.title}
-                                                </div>
-
-                                            </div>
-                                        </Link>
-                                    ))}
-
-
-                                </div>
-
-
+                                <UserDash />
                             </div>
+
 
 
 

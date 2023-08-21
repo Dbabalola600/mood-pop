@@ -17,7 +17,7 @@ const Content = [
     {link:"/Resources", icon:"LuHelpingHand"},
     { link: "/Journal", icon: "BsFillJournalBookmarkFill" },
     { link: "/Feed", icon: "FaReadme" },
-    { link: "/Search", icon: "TbUserSearch" },
+    // { link: "/Search", icon: "TbUserSearch" },
     {link: "/Notifications", icon:"MdNotifications"},
  
 
@@ -53,7 +53,7 @@ export default function BottomNavBar() {
         <div className=" bg-white dark:bg-black lg:hidden  text-gray-400 sticky bottom-0">
 
 
-            <div className='grid grid-cols-6 gap-4 justify-items-center '>
+            <div className='grid grid-cols-5 gap-4 justify-items-center '>
                 {Content.map((info, index) => (
                     <Link
                         href={info.link}

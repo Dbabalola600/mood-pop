@@ -3,7 +3,7 @@ import User from "../../../model/UserModel";
 import Follow from "../../../model/FollowModel";
 import Journal from "../../../model/JournalModel";
 import Notification from "../../../model/Notification";
-import Request from "../../../model/Request";
+// import Request from "../../../model/Request";
 import AudioJournal from "../../../model/AudioJournalModel";
 
 export default async function NewUser(req, res) {
@@ -48,9 +48,9 @@ export default async function NewUser(req, res) {
                     const Make_Notif = await Notification.create({
                         userId: newbie._id
                     })
-                    const Make_Request = await Request.create({
-                        userId: newbie._id
-                    })
+                    // const Make_Request = await Request.create({
+                    //     userId: newbie._id
+                    // })
                     const Make_Audio = await AudioJournal.create({
                         userId: newbie._id
                     })

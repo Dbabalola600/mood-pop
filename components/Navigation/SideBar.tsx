@@ -56,7 +56,7 @@ export default function UserSideBar() {
         { title: "Resources", link: "/Resources", icon: "LuHelpingHand" },
         { title: "Journal", link: "/Journal", icon: "BsFillJournalBookmarkFill" },
         { title: "Feed", link: "/Feed", icon: "FaReadme" },
-        { title: "Search", link: "/Search", icon: "TbUserSearch" },
+        // { title: "Search", link: "/Search", icon: "TbUserSearch" },
         { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
     ]

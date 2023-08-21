@@ -8,8 +8,8 @@ const RequestSchema = new Schema({
         // unique: true,
         ref: "User"
     },
-    new: {
-        type: Array,
+    from: {
+        type: String,
         required: true
     },
     // approved: {

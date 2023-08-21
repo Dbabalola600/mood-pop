@@ -15,16 +15,27 @@ export default async function NewRequest(req, res) {
 
         const { user, id } = JSON.parse(req.body)
 
+        //person sending request
         const Person = await Request.findOne({ userId: user })
 
 
-        const newRequest = await Request.updateOne(
-            { _id: Person._id },
-            { $push: { new: { $each: [id], $position: 0 } } },
-            { new: true }
-        ).exec()
+        //person recieving request
+        const Person_Rec = await Request.findOne({userId: id})
 
-        return res.status(200).json(Person)
+        //updating the reciever of the request
+        // const newRequest = await Request.updateOne(
+        //     { _id: Person_Rec._id },
+        //     { $push: { new: { $each: [user], $position: 0 } } },
+        //     { new: true }
+        // ).exec()
+
+
+        const newRequest = await Request.create({
+            userId: id,  //person recieving 
+            from: user
+        })
+
+        return res.status(200).json(newRequest)
 
 
 
