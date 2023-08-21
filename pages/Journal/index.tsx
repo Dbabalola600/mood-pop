@@ -79,7 +79,7 @@ export default function Journal() {
 
 
 
-                        <span
+                        {/* <span
                             className="mx-5"
                         >
 
@@ -92,11 +92,17 @@ export default function Journal() {
 
 
                             />
-                        </span>
+                        </span> */}
                     </div>
 
                 </div>
 
+
+                <div
+                className="mt-5"
+                >
+                    <JournalSearchBar />
+                </div>
 
                 {isLoading ? (
                     <div>
@@ -110,7 +116,7 @@ export default function Journal() {
 
                         {journal[0] === undefined ? (
                             <div
-                            className="mt-10"
+                                className="mt-10"
                             >
                                 make sum
                             </div>
