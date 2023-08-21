@@ -38,7 +38,7 @@ export default function Index() {
                         <div
                             className="text-black text-xl"
                         >
-                            People you follow
+                           Following
                         </div>
                         <div
                             className=" bg-primary h-1 w-1/2"
@@ -56,7 +56,7 @@ export default function Index() {
                         <div
                             className="text-black text-xl"
                         >
-                            People follow you
+                           Followers
                         </div>
                         <div
                             className=" bg-primary h-1 w-1/2"

@@ -24,8 +24,15 @@ export default function Test() {
 
 
                     {/* <LoadFeed/> */}
+                    <div className="toast toast-top toast-end z-10">
+                        <div className="alert alert-info">
+                            <span>New mail arrived.</span>
+                        </div>
+                        <div className="alert alert-error alert-primary">
+                            <span>Message sent successfully.</span>
+                        </div>
+                    </div>
 
-                   
                 </div>
             </DefaultLayout>
 

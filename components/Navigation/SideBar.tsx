@@ -66,9 +66,9 @@ export default function UserSideBar() {
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
             {user?.image === undefined ? (
-                <div className="flex justify-center items-center pt-10 ">
+                <div className="flex justify-center items-center pt-5 ">
                     <div className="avatar">
-                        <div className="w-40 h-40 text-center rounded-full flex justify-center items-center">
+                        <div className="w-40 h-30 text-center rounded-full flex justify-center items-center">
                             <CgProfile className="w-32 h-32 text-gray-600" />
                         </div>
                     </div>

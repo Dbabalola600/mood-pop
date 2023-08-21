@@ -14,7 +14,7 @@ export default function JournalNote() {
     const router = useRouter()
     const token = getCookie("USER")
 
-    
+
     const newadd: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -22,8 +22,8 @@ export default function JournalNote() {
         const form = e.currentTarget.elements as any
 
         const body = {
-            id :token,
-            title:form.item(0).value,
+            id: token,
+            title: form.item(0).value,
             content: form.item(1).value
         }
 
@@ -54,25 +54,29 @@ export default function JournalNote() {
                 <CusHead
                     title="Put something down why don't you?"
                 />
-
+                <div
+                className="mt-2"
+                >
+                    only you get to see this ❤️
+                </div>
 
                 <form
                     className=""
                     onSubmit={newadd}
                 >
                     <div
-                    className=" pb-5 space-y-5"
+                        className=" pb-5 space-y-5"
                     >
 
                         <TextInput
-                        name="Title"
-                        placeholder="Give your entry a catchy name"
-                        type="text"
+                            name="Title"
+                            placeholder="Give your entry a catchy name"
+                            type="text"
                         />
 
                         <LargeTextInput
-                        title="Content"
-                        placholder="write to your hearts content"
+                            title="Content"
+                            placholder="write to your hearts content"
                         />
 
                     </div>

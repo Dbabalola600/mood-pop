@@ -2,18 +2,21 @@ import Link from "next/link";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
 import UnLogged from "../../components/Layout/UnLogged";
 import TextInput from "../../components/inputs/TextInput";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
 import forgot_password from "../../public/forgot_password.svg"
+import ErrToast from "../../components/Displays/ErrToast";
+import GoodToast from "../../components/Displays/GoodToast";
 
 
 export default function ForgotPassword() {
     const router = useRouter()
-
     const [isLoading, setLoading] = useState(false)
     const token = getCookie("TEMPMAIL")
+    const [showtoast, settoast] = useState({ message: "", show: false })
+    const [showtoast2, settoast2] = useState({ message: "", show: false })
 
 
 
@@ -35,9 +38,11 @@ export default function ForgotPassword() {
         const response = await fetch("/api/User/ResetPassword", { method: "POST", body: JSON.stringify(body) })
             .then(res => {
                 if (res.status === 200) {
+                    settoast({ message: " message", show: true })
                     router.push("/")
                 } if (res.status === 202) {
                     //mismatch
+                    settoast2({ message: " message", show: true })
                 }
             }).catch(err => {
                 console.log(err)
@@ -51,6 +56,24 @@ export default function ForgotPassword() {
     }
 
 
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+
+    useEffect(() => {
+        if (showtoast2.show) {
+            setTimeout(() => {
+                settoast2({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast2.show])
 
 
 
@@ -70,6 +93,9 @@ export default function ForgotPassword() {
                         {/* form */}
                         <div>
 
+                            {showtoast.show && <GoodToast message='Sucessful' />}
+
+                            {showtoast2.show && <ErrToast message="Password do not match" />}
 
 
                             <form
@@ -159,7 +185,7 @@ export default function ForgotPassword() {
                                     className='rounded-sm'
                                 />
 
-                                
+
                             </div>
 
                         </div>

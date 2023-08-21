@@ -3,8 +3,8 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import LoadFeed from "../../components/Loading/LoadFeed"
 import FollowingResult from "../../components/Displays/FollowingResult"
-
-
+import Image from "next/image"
+import people1 from "../../public/people1.svg"
 type User = {
 
     _id: string,
@@ -57,7 +57,16 @@ export default function Follower() {
                     {user[0] === undefined ? (
                         <div>
 
-                            no one
+                            <div
+                                className="mt-5"
+                            >
+                                <Image
+                                    src={people1}
+                                    width="200px"
+                                    height="200px"
+                                />
+
+                            </div>
                         </div>
                     ) : (
                         <div>

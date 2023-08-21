@@ -9,9 +9,14 @@ import { useRouter } from 'next/router'
 import { FormEventHandler, useEffect, useState } from 'react'
 import UnLogged from '../components/Layout/UnLogged'
 import sign_in from "../public/sign_in.svg"
+import GoodToast from '../components/Displays/GoodToast'
+import ErrToast from '../components/Displays/ErrToast'
 
 export default function HomePage() {
   const [isLoading, setLoading] = useState(false)
+  const [showtoast, settoast] = useState({ message: "", show: false })
+  const [showtoast2, settoast2] = useState({ message: "", show: false })
+  const [showtoast3, settoast3] = useState({ message: "", show: false })
 
 
   const router = useRouter()
@@ -51,17 +56,16 @@ export default function HomePage() {
     const response = await fetch("/api/User/login", { method: "POST", body: JSON.stringify(body) })
       .then(res => {
         if (res.status === 200) {
+          settoast({ message: " message", show: true })
           router.push("/DashBoard")
         }
         if (res.status === 401) {
-          //wrong password
+          settoast2({ message: " message", show: true })
         }
         if (res.status === 402) {
-          //user doesn't exist
-        }
-
-        else {
-          //general error
+          settoast2({ message: " message", show: true })
+        }else {
+          settoast3({ message: " message", show: true })
         }
       })
 
@@ -70,6 +74,35 @@ export default function HomePage() {
     setLoading(false)
 
   }
+
+
+  useEffect(() => {
+    if (showtoast.show) {
+      setTimeout(() => {
+        settoast({ message: "", show: false })
+      }, 5000)
+    }
+
+  }, [showtoast.show])
+
+
+  useEffect(() => {
+    if (showtoast2.show) {
+      setTimeout(() => {
+        settoast2({ message: "", show: false })
+      }, 5000)
+    }
+
+  }, [showtoast2.show])
+
+  useEffect(() => {
+    if (showtoast3.show) {
+      setTimeout(() => {
+        settoast3({ message: "", show: false })
+      }, 5000)
+    }
+
+  }, [showtoast3.show])
 
 
 
@@ -90,7 +123,10 @@ export default function HomePage() {
             className='grid lg:grid-cols-2  grid-cols-1 '
           >
 
+            {showtoast.show && <GoodToast message='Login sucessful' />}
 
+            {showtoast2.show && <ErrToast message="Invalid password or user name" />}
+            {/* {showtoast3.show && <GoodToast message="something went wrong" />} */}
 
             {/* form */}
             <div>
@@ -185,11 +221,11 @@ export default function HomePage() {
                 className=' flex justify-center my-40 '
               >
                 <Image
-                src={sign_in}
-                className='rounded-sm'
-              />
+                  src={sign_in}
+                  className='rounded-sm'
+                />
 
-               
+
               </div>
 
             </div>

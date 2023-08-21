@@ -7,6 +7,8 @@ import { getCookie } from "cookies-next";
 import UserDash from "../../components/Displays/UserDash";
 import SearchBar from "../../components/inputs/SearchBar";
 import PostFeed from "../../components/Displays/PostFeed";
+import Image from "next/image";
+import anon_feed from "../../public/anon_feed.svg"
 
 
 type User = {
@@ -127,9 +129,28 @@ export default function Feed() {
                             {post[0] === undefined ? (
                                 <div>
                                     <div
-                                        className="text-center text-3xl font-bold "
+                                        className="mt-5 text-3xl font-bold  "
                                     >
-                                        Not following anyone
+                                        <div
+                                            className="mb-6 text-black text-2xl font-bold"
+                                        >
+                                            Your Feed
+                                            <div
+                                                className="w-[150px] bg-primary h-1 rounded-full"
+                                            />
+                                        </div>
+                                        <div
+                                            className="lg:mt-5 mt-[100px] text-center"
+                                        >
+                                            <Image
+                                                src={anon_feed}
+                                                width="500px"
+                                                height="400px"
+
+                                            />
+
+                                        </div>
+
                                     </div>
 
                                 </div>

@@ -23,9 +23,6 @@ export default async function Login(req, res) {
 
         if (existingUser === null) {
             const existingUser_mail = await User.findOne({ email: user })
-
-
-
             if (existingUser_mail === null) {
                 return res.status(402).json("not a user")
             } else {
@@ -37,9 +34,6 @@ export default async function Login(req, res) {
                     return res.status(401).json("incorrect password")
                 }
             }
-
-
-
         } else {
             //check password 
 

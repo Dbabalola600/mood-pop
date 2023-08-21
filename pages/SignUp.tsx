@@ -6,9 +6,11 @@ import DefaultLayout from '../components/Layout/DefaultLayout'
 import Footer from '../components/Navigation/Footer'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState, FormEventHandler } from 'react'
+import { useState, FormEventHandler, useEffect } from 'react'
 import UnLogged from '../components/Layout/UnLogged'
 import welcome_cats from "../public/welcome_cats.svg"
+import ErrToast from '../components/Displays/ErrToast'
+import GoodToast from '../components/Displays/GoodToast'
 
 
 
@@ -31,6 +33,9 @@ export default function SignUp() {
 
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
+    const [showtoast, settoast] = useState({ message: "", show: false })
+    const [showtoast2, settoast2] = useState({ message: "", show: false })
+    const [showtoast3, settoast3] = useState({ message: "", show: false })
 
 
 
@@ -54,8 +59,13 @@ export default function SignUp() {
             .then(async res => {
                 if (res.status === 255) {
                     //email exists
+                    settoast2({ message: " message", show: true })
+
+
                 } if (res.status === 256) {
                     //user exists
+                    settoast3({ message: " message", show: true })
+
                 }
                 if (res.status === 200) {
                     //generate token for email verification
@@ -78,6 +88,8 @@ export default function SignUp() {
                                 const MailRes = await fetch("/api/mail/VerifyEmail", { method: "POST", body: JSON.stringify(body3) })
                                     .then(res => {
                                         if (res.status === 200) {
+                                            settoast({ message: " message", show: true })
+
                                             router.push("/")
                                         }
                                     })
@@ -102,6 +114,34 @@ export default function SignUp() {
 
 
 
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+
+    useEffect(() => {
+        if (showtoast2.show) {
+            setTimeout(() => {
+                settoast2({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast2.show])
+
+    useEffect(() => {
+        if (showtoast3.show) {
+            setTimeout(() => {
+                settoast3({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast3.show])
+
 
 
 
@@ -120,6 +160,10 @@ export default function SignUp() {
                         className='grid lg:grid-cols-2  grid-cols-1 '
                     >
 
+                        {showtoast.show && <GoodToast message='Creation sucessful' />}
+
+                        {showtoast3.show && <ErrToast message="Invalid user name" />}
+                        {showtoast2.show && <ErrToast message="Invalid Email" />}
 
 
                         {/* form */}
