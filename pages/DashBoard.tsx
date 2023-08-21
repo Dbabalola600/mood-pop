@@ -13,8 +13,8 @@ import Feed from "../components/Displays/Feed";
 import CusHead from "../components/Displays/CusHead";
 import { TfiWrite } from "react-icons/tfi"
 import UserDash from "../components/Displays/UserDash";
-
-
+import Image from "next/image";
+import content from "../public/content.svg"
 
 
 
@@ -134,12 +134,19 @@ export default function DashBoard() {
                             {post[0] === undefined ? (
                                 <div>
                                     <div
-                                        className="text-center text-3xl font-bold "
+                                        className="text-center text-3xl font-bold pt-10 "
                                     >
-                                        you should post something
 
-                                        nonye give me an image to add here please
-
+                                        <div
+                                        className="pb-5"
+                                        >
+                                            Make a new post
+                                        </div>
+                                        <Image
+                                        src={content}
+                                        width="500px"
+                                        height="400px"
+                                        />
                                     </div>
 
                                 </div>

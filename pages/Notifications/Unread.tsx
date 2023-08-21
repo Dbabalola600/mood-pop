@@ -3,8 +3,8 @@ import RequestNotif from "../../components/Displays/RequestNotif";
 import { getCookie } from "cookies-next";
 import LoadFeed from "../../components/Loading/LoadFeed";
 import { useRouter } from "next/router";
-
-
+import Image from "next/image";
+import new_notifications from "../../public/new_notifications.svg"
 
 
 
@@ -101,7 +101,7 @@ export default function Unread() {
     }
 
 
-    const DeclineReq = async (req_id: any, ) => {
+    const DeclineReq = async (req_id: any,) => {
         //delete notification
 
         const body2 = {
@@ -149,9 +149,22 @@ export default function Unread() {
 
 
                         {user[0] === undefined ? (
-                            <div>
+                            <div
+                            className="pt-10"
+                            >
+                                <div
+                                className="text-specgray text-[60px] text-center"
+                                >
+                                    Nothing new
+                                </div>
+                                <div>
+                                    <Image
+                                        src={new_notifications}
+                                        width="500px"
+                                        height="400px"
+                                    />
+                                </div>
 
-                                no one
                             </div>
                         ) : (
                             <div>
@@ -169,7 +182,7 @@ export default function Unread() {
                                                 Acceptclicky={() => { AcceptReq(info.peep._id, info.user._id) }}
                                                 image={info.user.image}
                                                 name={info.user.UserName}
-                                                Declineclicky={() => {DeclineReq(info.peep._id) }}
+                                                Declineclicky={() => { DeclineReq(info.peep._id) }}
 
                                             />
                                         </div>

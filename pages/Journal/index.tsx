@@ -10,6 +10,7 @@ import searchbutton from "../../public/searchbutton.svg"
 import Image from "next/image"
 import { useRouter } from "next/router";
 import { BsPencilSquare } from "react-icons/bs";
+import noted from "../../public/noted.svg"
 
 type Journal = {
     id: string,
@@ -101,7 +102,7 @@ export default function Journal() {
                 <div
                     className="mt-5"
                 >
-                    <JournalSearchBar />
+                    {/* <JournalSearchBar /> */}
                 </div>
 
                 {isLoading ? (
@@ -118,7 +119,20 @@ export default function Journal() {
                             <div
                                 className="mt-10"
                             >
-                                make sum
+
+                                {/* <div
+                                className="text-black text-center font-bold lg:mb-10 lg:text-lg"
+                                >
+                                    Nothing Here
+                                </div> */}
+                                <div
+                                className="mt-[50px] lg:mt-0"
+                                >
+                                    <Image
+                                        src={noted}
+                                    />
+
+                                </div>
                             </div>
                         ) : (
 

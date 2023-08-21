@@ -5,8 +5,8 @@ import TextInput from "../../components/inputs/TextInput";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
-
-
+import Image from "next/image";
+import forgot_password from "../../public/forgot_password.svg"
 
 
 export default function ForgotPassword() {
@@ -74,9 +74,9 @@ export default function ForgotPassword() {
 
                             <form
                                 className="w-full min-h-screen  space-y-[50px] py-20 px-10 bg-white text-black text-base md:text-xl md:rounded-xl"
-                              onSubmit={
-                                woop
-                              }
+                                onSubmit={
+                                    woop
+                                }
                             >
 
 
@@ -154,14 +154,12 @@ export default function ForgotPassword() {
                             <div
                                 className=' flex justify-center my-40 '
                             >
-                                {/* <Image
-                src={logo}
-                className='rounded-sm'
-              /> */}
+                                <Image
+                                    src={forgot_password}
+                                    className='rounded-sm'
+                                />
 
-                                <div>
-                                    image
-                                </div>
+                                
                             </div>
 
                         </div>

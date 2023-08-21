@@ -5,8 +5,8 @@ import TextInput from "../../components/inputs/TextInput";
 import { FormEventHandler, useState } from "react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
-
-
+import Image from "next/image";
+import web_development from "../../public/web_development.svg"
 
 
 export default function ForgotPassword() {
@@ -132,14 +132,12 @@ export default function ForgotPassword() {
                             <div
                                 className=' flex justify-center my-40 '
                             >
-                                {/* <Image
-                src={logo}
-                className='rounded-sm'
-              /> */}
+                                <Image
+                                    src={web_development}
+                                    className='rounded-sm'
+                                />
 
-                                <div>
-                                    image
-                                </div>
+                                
                             </div>
 
                         </div>
