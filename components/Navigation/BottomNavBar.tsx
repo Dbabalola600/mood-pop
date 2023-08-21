@@ -10,14 +10,16 @@ import { MdSpaceDashboard, MdNotifications } from "react-icons/md"
 import { BsFillJournalBookmarkFill } from "react-icons/bs"
 import { FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
-
+import {LuHelpingHand} from "react-icons/lu"
 
 const Content = [
     { link: "/DashBoard", icon: "MdSpaceDashboard" },
+    {link:"/Resources", icon:"LuHelpingHand"},
     { link: "/Journal", icon: "BsFillJournalBookmarkFill" },
     { link: "/Feed", icon: "FaReadme" },
     { link: "/Search", icon: "TbUserSearch" },
-    {link: "/Notifications", icon:"MdNotifications"}
+    {link: "/Notifications", icon:"MdNotifications"},
+ 
 
 ]
 
@@ -51,7 +53,7 @@ export default function BottomNavBar() {
         <div className=" bg-white dark:bg-black lg:hidden  text-gray-400 sticky bottom-0">
 
 
-            <div className='grid grid-cols-5 gap-4 justify-items-center '>
+            <div className='grid grid-cols-6 gap-4 justify-items-center '>
                 {Content.map((info, index) => (
                     <Link
                         href={info.link}
@@ -66,7 +68,8 @@ export default function BottomNavBar() {
                             {info.icon === "FaReadme" && <FaReadme />}
                             {info.icon === "TbUserSearch" && <TbUserSearch />}
                             {info.icon === "MdNotifications" && <MdNotifications  color='gray-400'/>}
-                            
+                            {info.icon === "LuHelpingHand" && <LuHelpingHand />}
+                          
                         </div>
                     </Link>
                 ))}

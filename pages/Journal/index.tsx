@@ -9,6 +9,7 @@ import JournalSearchBar from "../../components/inputs/JournalSearch";
 import searchbutton from "../../public/searchbutton.svg"
 import Image from "next/image"
 import { useRouter } from "next/router";
+import { BsPencilSquare } from "react-icons/bs";
 
 type Journal = {
     id: string,
@@ -64,31 +65,34 @@ export default function Journal() {
 
 
                     <div
-                        className="float-right text-right "
+                        className="float-right text-right  "
                     >
-                        <div>
-                            <Link
-                                href={"Journal/CreateNote"}
 
-                            >
-                              +
-                            </Link>
-
-                            <span
-                                className="mx-5"
-                            >
-
-                                <Image
-                                    onClick={() => router.push("/Journal/Search")}
-                                    src={searchbutton}
-                                    className="cursor-pointer"
-                                />
-                            </span>
+                        <div
+                            className=" "
+                        >
+                            <BsPencilSquare
+                                onClick={() => router.push("/Journal/CreateNote")}
+                                className="cursor-pointer float-right text-[40px]"
+                            />
                         </div>
 
 
 
+                        <span
+                            className="mx-5"
+                        >
 
+                            <Image
+                                onClick={() => router.push("/Journal/Search")}
+                                src={searchbutton}
+                                className="cursor-pointer "
+                                height={"40px"}
+                                width={40}
+
+
+                            />
+                        </span>
                     </div>
 
                 </div>
@@ -100,23 +104,45 @@ export default function Journal() {
                         <LoadFeed />
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-6">
 
-                        {journal.map((info, index) => (
+                    <div>
+
+
+                        {journal[0] === undefined ? (
                             <div
-                                key={index}
+                            className="mt-10"
                             >
-                                <JournalFeed
-                                    id={info.id}
-                                    date={info.Date}
-                                    title={info.title}
-                                />
+                                make sum
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-6">
+
+
+
+
+                                {journal.map((info, index) => (
+                                    <div
+                                        key={index}
+                                    >
+                                        <JournalFeed
+                                            id={info.id}
+                                            date={info.Date}
+                                            title={info.title}
+                                        />
+
+                                    </div>
+
+                                ))}
 
                             </div>
+                        )}
 
-                        ))}
+
+
+
 
                     </div>
+
                 )}
 
 

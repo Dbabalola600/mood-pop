@@ -6,7 +6,7 @@ import { FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
 import { getCookie } from "cookies-next";
 import { CgProfile } from "react-icons/cg"
-
+import {LuHelpingHand} from "react-icons/lu"
 
 
 type User = {
@@ -53,15 +53,16 @@ export default function UserSideBar() {
 
     const Content = [
         { title: "Dashboard", link: "/DashBoard", icon: "MdSpaceDashboard" },
+        { title: "Resources", link: "/Resources", icon: "LuHelpingHand" },
         { title: "Journal", link: "/Journal", icon: "BsFillJournalBookmarkFill" },
         { title: "Feed", link: "/Feed", icon: "FaReadme" },
         { title: "Search", link: "/Search", icon: "TbUserSearch" },
-        {title:"Notifications",link: "/Notifications", icon:"MdNotifications"}
+        { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
     ]
 
     return (
-        
+
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
             {user?.image === undefined ? (
@@ -110,8 +111,8 @@ export default function UserSideBar() {
                                 {info.icon === "BsFillJournalBookmarkFill" && <BsFillJournalBookmarkFill />}
                                 {info.icon === "FaReadme" && <FaReadme />}
                                 {info.icon === "TbUserSearch" && <TbUserSearch />}
-                                {info.icon === "MdNotifications" && <MdNotifications  color='gray-400'/>}
-                            
+                                {info.icon === "MdNotifications" && <MdNotifications color='gray-400' />}
+                                {info.icon === "LuHelpingHand" && <LuHelpingHand />}
                             </div>
                             <div
                                 className=" "
@@ -127,7 +128,7 @@ export default function UserSideBar() {
 
 
             </div>
-            
+
         </div >
     );
 

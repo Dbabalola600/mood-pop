@@ -6,7 +6,7 @@ import LoadFeed from "../components/Loading/LoadFeed";
 import SearchBar from "../components/inputs/SearchBar";
 import { MdSpaceDashboard, MdNotifications, MdPostAdd } from "react-icons/md"
 import { BsFillJournalBookmarkFill, BsPencilSquare } from "react-icons/bs"
-import { FaReadme } from "react-icons/fa"
+import { FaHandsHelping, FaReadme } from "react-icons/fa"
 import { TbUserSearch } from "react-icons/tb"
 import Link from "next/link";
 import Feed from "../components/Displays/Feed";
@@ -80,7 +80,7 @@ export default function DashBoard() {
     const Content = [
         { title: "New Post", link: "/Post", icon: "MdPostAdd" },
         { title: "New Journal", link: "/Journal/CreateNote", icon: "BsPencilSquare" },
-        { title: "Search", link: "/Search", icon: "TbUserSearch" },
+        { title: "Seek Help", link: "/Resources/SeekHelp", icon: "FaHandsHelping" },
         { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
 
     ]
@@ -159,7 +159,7 @@ export default function DashBoard() {
                                                     {info.icon === "MdPostAdd" && <MdPostAdd />}
                                                     {info.icon === "BsPencilSquare" && <BsPencilSquare />}
                                                     {info.icon === "FaReadme" && <FaReadme />}
-                                                    {info.icon === "TbUserSearch" && <TbUserSearch />}
+                                                    {info.icon === "FaHandsHelping" && <FaHandsHelping />}
                                                     {info.icon === "MdNotifications" && <MdNotifications color='gray-400' />}
 
                                                 </div>
