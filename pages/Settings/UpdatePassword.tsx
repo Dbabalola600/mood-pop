@@ -28,8 +28,6 @@ export default function UpdatePassword() {
             n_pass: form.item(1).value,
 
         }
-
-
         const response = await fetch("/api/User/Settings/UpdatePassword", { method: "POST", body: JSON.stringify(body) })
             .then(res => {
                 if (res.status === 200) {
@@ -40,11 +38,6 @@ export default function UpdatePassword() {
             }).catch(err => {
                 console.log(err)
             })
-
-
-
-
-
         setLoading(false)
     }
 
@@ -61,15 +54,12 @@ export default function UpdatePassword() {
                         title="Update Password"
                     />
                 </div>
-
-
                 <form
                     className="mt-5 "
                     onSubmit={
                         woop
                     }
                 >
-
                     <div
                         className="mb-5 space-y-5"
                     >
@@ -92,19 +82,6 @@ export default function UpdatePassword() {
                             />
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div className=" w-full  space-y-2">
 
                         <button className="w-full btn-primary btn  text-white"

@@ -4,7 +4,11 @@ import DefaultLayout from "../../components/Layout/DefaultLayout";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
 import LoadFeed from "../../components/Loading/LoadFeed";
-
+import CusHead from "../../components/Displays/CusHead";
+import JournalSearchBar from "../../components/inputs/JournalSearch";
+import searchbutton from "../../public/searchbutton.svg"
+import Image from "next/image"
+import { useRouter } from "next/router";
 
 type Journal = {
     id: string,
@@ -17,6 +21,7 @@ export default function Journal() {
     const [isLoading, setLoading] = useState(false)
     const [journal, setJournal] = useState<Journal[]>([])
     const token = getCookie("USER")
+    const router = useRouter()
 
 
     const showinfo = async () => {
@@ -47,20 +52,47 @@ export default function Journal() {
         <DefaultLayout>
             <div>
 
-
-
-                journal
-                <Link
-                    href={"Journal/CreateNote"}
-
+                <div
+                    className=" grid grid-cols-2"
                 >
 
-                    <div
-
-                    >
-                        new note in journal
+                    <div>
+                        <CusHead
+                            title="Journal"
+                        />
                     </div>
-                </Link>
+
+
+                    <div
+                        className="float-right text-right "
+                    >
+                        <div>
+                            <Link
+                                href={"Journal/CreateNote"}
+
+                            >
+                              +
+                            </Link>
+
+                            <span
+                                className="mx-5"
+                            >
+
+                                <Image
+                                    onClick={() => router.push("/Journal/Search")}
+                                    src={searchbutton}
+                                    className="cursor-pointer"
+                                />
+                            </span>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
 
                 {isLoading ? (
                     <div>
