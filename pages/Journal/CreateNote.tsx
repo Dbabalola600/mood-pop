@@ -86,7 +86,7 @@ export default function JournalNote() {
 
                         <button className="w-full btn-primary btn  text-white"
                             type="submit">
-                            {isLoading ? "Loading..." : "Post"}
+                            {isLoading ? "Loading..." : "Create"}
 
 
                         </button>
