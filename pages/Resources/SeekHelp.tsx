@@ -36,7 +36,9 @@ export default function SeekHelp() {
                         className="w-[150px] bg-primary h-1 rounded-full"
                     />
                     {numbers.map((info, index) => (
-                        <div>
+                        <div
+                        key={index}
+                        >
                             <div
                                 className="bg-white rounded-lg mt-5 p-5"
                             >
@@ -68,7 +70,9 @@ export default function SeekHelp() {
                         className="w-[150px] bg-primary h-1 rounded-full"
                     />
                     {mails.map((info, index) => (
-                        <div>
+                        <div
+                        key={index}
+                        >
                             <div
                                 className="bg-white rounded-lg mt-5 p-5"
                             >
