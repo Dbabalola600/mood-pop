@@ -48,26 +48,21 @@ export default function RequestNotif(props: MyProps) {
             )}
 
             <span
-                className="mx-5 text-black lg:text-[25px]"
+                className="mx-5 text-black lg:text-[25px] text-center mb-5"
             >
                 {props.name}
             </span>
 
 
-            <a
-                className="grid lg:grid-cols-2  lg:w-1/2 text-center gap-4 float-right grid-rows-2"
+            <div
+                className="grid lg:grid-cols-2  lg:w-1/2 text-center gap-4 float-right grid-cols-2 w-full"
             >
 
                 <div
                     className="float-right bg-green-500 text-white  p-3 rounded-full cursor-pointer dark:bg-green-500 dark:text-white hover:bg-black "
                     onClick={props.Acceptclicky}
                 >
-
-
-
                     Accept
-
-
                 </div>
 
                 <div
@@ -80,7 +75,7 @@ export default function RequestNotif(props: MyProps) {
 
                 </div>
 
-            </a>
+            </div>
 
 
 
