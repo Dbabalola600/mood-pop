@@ -64,6 +64,10 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
 
 
 
+    
+
+
+
     return (
         <>
             <div className="grid lg:min-h-screen w-screen grid-rows-header bg-secondary ">

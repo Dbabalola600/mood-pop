@@ -1,3 +1,4 @@
+import LoadingAnimation from "../components/Displays/Loading";
 import PostFeed from "../components/Displays/PostFeed";
 import UserSearchResult from "../components/Displays/UserSearchResult";
 import DefaultLayout from "../components/Layout/DefaultLayout";
@@ -24,14 +25,17 @@ export default function Test() {
 
 
                     {/* <LoadFeed/> */}
-                    <div className="toast toast-top toast-end z-10">
+                    {/* <div className="toast toast-top toast-end z-10">
                         <div className="alert alert-info">
                             <span>New mail arrived.</span>
                         </div>
                         <div className="alert alert-error alert-primary">
                             <span>Message sent successfully.</span>
                         </div>
-                    </div>
+                    </div> */}
+
+
+                    <LoadingAnimation/>
 
                 </div>
             </DefaultLayout>
