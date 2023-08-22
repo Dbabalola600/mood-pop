@@ -1,7 +1,7 @@
 import connectMongo from "../../../utils/connectMongo";
 import Notification from "../../../model/Notification";
 import User from "../../../model/UserModel";
-
+import { sendMail } from "../../../utils/mailService";
 
 
 
@@ -39,6 +39,21 @@ export default async function NewNotification(req, res) {
             },
             { new: true }
         ).exec()
+
+
+
+        //send email 
+        //person to recieve mail 
+        const rec = await User.findOne({ _id: user })
+
+
+
+        await sendMail(
+            "New Request",
+            rec.email,
+            "You just recieved a new follow request"
+        )
+
 
         return res.status(200).json(Person.unread)
 

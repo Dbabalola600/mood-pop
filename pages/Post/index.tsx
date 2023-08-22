@@ -22,8 +22,8 @@ export default function Post() {
         const form = e.currentTarget.elements as any
 
         const body = {
-            userId :token,
-            category:form.item(0).value,
+            userId: token,
+            category: form.item(0).value,
             post: form.item(1).value
         }
 
@@ -58,7 +58,9 @@ export default function Post() {
                         title="New Post"
                     />
 
-
+                    <div>
+                        Note: posts only last for 24hours
+                    </div>
 
                     <form
                         className=" "
