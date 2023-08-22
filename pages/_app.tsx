@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       {/* Render the main content */}
       <Component {...pageProps} />
-      {/* <NextNProgress /> */}
+      <NextNProgress />
     </>
   );
 }

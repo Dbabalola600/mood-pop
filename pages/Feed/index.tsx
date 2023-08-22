@@ -151,7 +151,7 @@ export default function Feed() {
                                 {showtoast.show && <GoodToast message='Copied to Clipboard' />}
 
                                 <div
-                                    className="hidden lg:block"
+                                    className=""
                                 >
                                     <SearchBar />
                                 </div>
