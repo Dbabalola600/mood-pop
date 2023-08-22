@@ -179,7 +179,7 @@ export default function Found() {
 
 
 
-                        {data[0]?.UserName === undefined ? (
+                        {data?.UserName === undefined ? (
                             <div>
                                 <div>
                                     <Image
