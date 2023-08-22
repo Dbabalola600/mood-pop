@@ -119,6 +119,28 @@ export default function Unread() {
     }
 
 
+
+    const BigAccept = async (req_id: any, user_id: any) => {
+
+        const body = {
+            user: token,
+            req_id: req_id,
+            id: user_id
+        }
+
+
+        const Reqreponse = await fetch("/api/Follow/MegaNewFollow", { method: "POST", body: JSON.stringify(body) })
+        .then(res => {
+            if (res.status === 200) {
+                console.log("3")
+                settoast({ message: " message", show: true })
+                router.push("/DashBoard")
+            }
+        })
+
+    }
+
+
     const DeclineReq = async (req_id: any,) => {
         //delete notification
 
@@ -226,7 +248,7 @@ export default function Unread() {
                                         >
                                             <RequestNotif
                                                 Acceptclicky={() => {
-                                                    AcceptReq(
+                                                    BigAccept(
                                                         info.peep._id,
                                                         info.user._id
                                                     )
