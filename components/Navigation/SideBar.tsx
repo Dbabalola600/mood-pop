@@ -7,6 +7,7 @@ import { TbUserSearch } from "react-icons/tb"
 import { getCookie } from "cookies-next";
 import { CgProfile } from "react-icons/cg"
 import {LuHelpingHand} from "react-icons/lu"
+import useSWR from "swr";
 
 
 type User = {
@@ -22,18 +23,25 @@ type User = {
 
 export default function UserSideBar() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const token = getCookie("USER")
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
+
+    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+
+    const { data, error } = useSWR(
+        `/api/Notification/CountNotifications?user=${token}`,
+        fetcher
+    )
 
     const [user, setUser] = useState<User | null>(null)
 
     const showinfo = async () => {
 
 
-        const token = getCookie("USER")
+     
         const body = {
             id: token
         }
@@ -50,6 +58,13 @@ export default function UserSideBar() {
     }, [])
 
 
+    useEffect(() => {
+        if (data) {
+
+        }
+    }, [data])
+
+    console.log(data)
 
     const Content = [
         { title: "Dashboard", link: "/DashBoard", icon: "MdSpaceDashboard" },
@@ -57,7 +72,7 @@ export default function UserSideBar() {
         { title: "Journal", link: "/Journal", icon: "BsFillJournalBookmarkFill" },
         { title: "Feed", link: "/Feed", icon: "FaReadme" },
         // { title: "Search", link: "/Search", icon: "TbUserSearch" },
-        { title: "Notifications", link: "/Notifications", icon: "MdNotifications" }
+        { title: `${data}Notifications`, link: "/Notifications", icon: "MdNotifications" }
 
     ]
 
@@ -102,7 +117,7 @@ export default function UserSideBar() {
                         key={index}
                     >
                         <div
-                            className="  cursor-pointer text-2xl hover:text-primary rounded-lg px-3 py-5 space-x-0 grid grid-cols-2 w-20"
+                            className="  cursor-pointer text-xl hover:text-primary rounded-lg px-1 py-5 space-x-0 grid grid-cols-2 w-20"
                         >
                             <div
                                 className="items-center py-1 "

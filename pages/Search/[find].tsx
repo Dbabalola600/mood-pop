@@ -179,8 +179,10 @@ export default function Found() {
 
 
 
-                        {data?.UserName === undefined ? (
+                        {data === undefined ? (
                             <div>
+
+                                
                                 <div>
                                     <Image
                                         src={search_l}

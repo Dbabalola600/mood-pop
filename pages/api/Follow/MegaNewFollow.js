@@ -73,7 +73,7 @@ export default async function MegaFollow(req, res) {
 
         let UnRead = []
         for (let i = 0; i < Person.unread.length; i++) {
-            if (id !== Person.unread[i].id) {
+            if (req_id !== Person.unread[i].id) {
                 UnRead.push(Person.unread[i])
             }
         }
