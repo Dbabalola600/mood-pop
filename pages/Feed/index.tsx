@@ -9,6 +9,11 @@ import SearchBar from "../../components/inputs/SearchBar";
 import PostFeed from "../../components/Displays/PostFeed";
 import Image from "next/image";
 import anon_feed from "../../public/anon_feed.svg"
+import { useRouter } from "next/router";
+import { PiShareNetworkFill } from "react-icons/pi"
+import GoodToast from "../../components/Displays/GoodToast";
+
+
 
 
 type User = {
@@ -43,7 +48,8 @@ export default function Feed() {
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User | null>(null)
     const [post, setPost] = useState<Post[]>([])
-
+    const [showtoast, settoast] = useState({ message: "", show: false })
+ 
     const showinfo = async () => {
         setLoading(true)
         const token = getCookie("USER")
@@ -74,6 +80,26 @@ export default function Feed() {
     }, [])
 
 
+    const share = useRouter()
+    const base = `https://mood-pop.vercel/search/${user?.UserName}`
+
+    const links = base
+
+
+
+    const copylink = () => {
+        settoast({ message: " message", show: true })
+        navigator.clipboard.writeText(links)
+    }
+    useEffect(() => {
+        if (showtoast.show) {
+          setTimeout(() => {
+            settoast({ message: "", show: false })
+          }, 5000)
+        }
+    
+      }, [showtoast.show])
+
 
     return (
         <DefaultLayout>
@@ -95,15 +121,33 @@ export default function Feed() {
                                 className="lg:mx-5 grid lg:grid-cols-2 grid-cols-1 mb-5 lg:mb-0 "
                             >
                                 <div
-                                    className="text-specgray lg:text-5xl text-2xl font-bold"
+                                    className="text-specgray  font-bold"
                                 >
 
                                     <CusHead
                                         title={`Hi, ${user?.UserName}`}
                                     />
+                                      <div
+                                        onClick={copylink}
+                                        className="cursor-pointer"
+                                    >
+                                        <div className="flex pt-2">
+                                            <span className="mr-0 pr-0 ">
+                                                Share Profile
+                                            </span>
+                                            <span className="mr-0 pr-0">
+                                                <PiShareNetworkFill />
+                                            </span>
+                                        </div>
+
+
+
+                                    </div>
+
 
 
                                 </div>
+                                {showtoast.show && <GoodToast message='Copied to Clipboard' />}
 
                                 <div
                                     className="hidden lg:block"

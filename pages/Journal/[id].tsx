@@ -52,10 +52,30 @@ export default function Journal() {
 
 
 
-                journal
+                <div
+                    className="grid grid-cols-2 lg:text-4xl text-xl bg-specpurple p-5"
+                >
+                    <div
+                        className="text-black"
+                    >
+                        Title:{" "} {journal?.title}
+                    </div>
+
+                    <div
+                        className="text-right text-white"
+                    >
+                        Date:{" "}{journal?.Date}
+                    </div>
+
+                </div>
 
 
-                {journal?.title}
+                <div
+                className="bg-white p-5 mt-5 text-black rounded-xl"
+                >
+                    {journal?.content}
+
+                </div>
 
 
 

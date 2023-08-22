@@ -15,7 +15,9 @@ import { TfiWrite } from "react-icons/tfi"
 import UserDash from "../components/Displays/UserDash";
 import Image from "next/image";
 import content from "../public/content.svg"
-
+import { useRouter } from "next/router";
+import { PiShareNetworkFill } from "react-icons/pi"
+import GoodToast from "../components/Displays/GoodToast";
 
 
 type User = {
@@ -39,7 +41,8 @@ export default function DashBoard() {
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User | null>(null)
     const [post, setPost] = useState<Post[]>([])
-
+    const [showtoast, settoast] = useState({ message: "", show: false })
+ 
 
 
 
@@ -74,13 +77,28 @@ export default function DashBoard() {
     }, [])
 
 
-    // console.log(user?.image)
+    const share = useRouter()
+    const base = `https://mood-pop.vercel/search/${user?.UserName}`
+
+    const links = base
 
 
 
+    const copylink = () => {
+        settoast({ message: " message", show: true })
+        navigator.clipboard.writeText(links)
+    }
 
 
 
+    useEffect(() => {
+        if (showtoast.show) {
+          setTimeout(() => {
+            settoast({ message: "", show: false })
+          }, 5000)
+        }
+    
+      }, [showtoast.show])
     //   if(post[0] === undef) 
 
     return (
@@ -100,15 +118,34 @@ export default function DashBoard() {
                                 className="lg:mx-5 grid lg:grid-cols-2 grid-cols-1 mb-5 lg:mb-0 "
                             >
                                 <div
-                                    className="text-specgray lg:text-5xl text-2xl font-bold"
+                                    className="text-specgray  font-bold"
                                 >
 
                                     <CusHead
                                         title={`Hi, ${user?.UserName}`}
                                     />
+                                    <div
+                                        onClick={copylink}
+                                        className="cursor-pointer"
+                                    >
+                                        <div className="flex pt-2">
+                                            <span className="mr-0 pr-0 ">
+                                                Share Profile
+                                            </span>
+                                            <span className="mr-0 pr-0">
+                                                <PiShareNetworkFill />
+                                            </span>
+                                        </div>
+
+
+
+                                    </div>
+
 
 
                                 </div>
+
+                                {showtoast.show && <GoodToast message='Copied to Clipboard' />}
 
                                 <div
                                     className="hidden lg:block"
@@ -138,14 +175,14 @@ export default function DashBoard() {
                                     >
 
                                         <div
-                                        className="pb-5"
+                                            className="pb-5"
                                         >
                                             Make a new post
                                         </div>
                                         <Image
-                                        src={content}
-                                        width="500px"
-                                        height="400px"
+                                            src={content}
+                                            width="500px"
+                                            height="400px"
                                         />
                                     </div>
 
@@ -163,7 +200,7 @@ export default function DashBoard() {
                                             className="w-[150px] bg-primary h-1 rounded-full"
                                         />
                                     </div>
-                                    
+
                                     {post.map((info, index) => (
                                         <div
                                             key={index}

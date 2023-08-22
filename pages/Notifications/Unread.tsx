@@ -5,6 +5,8 @@ import LoadFeed from "../../components/Loading/LoadFeed";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import new_notifications from "../../public/new_notifications.svg"
+import ErrToast from "../../components/Displays/ErrToast";
+import GoodToast from "../../components/Displays/GoodToast";
 
 
 
@@ -32,6 +34,10 @@ export default function Unread() {
     const [user, setUser] = useState<FollReq[]>([])
     const token = getCookie("USER")
     const router = useRouter()
+    const [showtoast, settoast] = useState({ message: "", show: false })
+    const [showtoast2, settoast2] = useState({ message: "", show: false })
+    const [showtoast3, settoast3] = useState({ message: "", show: false })
+
 
     const showinfo = async () => {
         setLoading(true)
@@ -65,6 +71,7 @@ export default function Unread() {
             .then(async res => {
                 if (res.status === 200) {
                     //delete notification
+                    settoast({ message: " message", show: true })
 
                     const body2 = {
                         id: req_id,
@@ -76,6 +83,7 @@ export default function Unread() {
                             if (res.status === 200) {
                                 // accept request
 
+                                settoast({ message: " message", show: true })
 
                                 const body3 = {
                                     id: req_id
@@ -83,6 +91,8 @@ export default function Unread() {
                                 const Reqreponse = await fetch("/api/Request/AcceptRequest", { method: "POST", body: JSON.stringify(body3) })
                                     .then(res => {
                                         if (res.status === 200) {
+                                            settoast({ message: " message", show: true })
+
                                             router.push("/DashBoard")
                                         }
                                     })
@@ -122,6 +132,8 @@ export default function Unread() {
                     const Reqreponse = await fetch("/api/Request/DeleteRequest", { method: "POST", body: JSON.stringify(body3) })
                         .then(res => {
                             if (res.status === 200) {
+                                settoast2({ message: " message", show: true })
+
                                 router.push("/DashBoard")
                             }
                         })
@@ -132,6 +144,28 @@ export default function Unread() {
 
 
     }
+
+
+
+
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+
+    useEffect(() => {
+        if (showtoast2.show) {
+            setTimeout(() => {
+                settoast2({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast2.show])
 
 
     return (
@@ -150,10 +184,10 @@ export default function Unread() {
 
                         {user[0] === undefined ? (
                             <div
-                            className="pt-10"
+                                className="pt-10"
                             >
                                 <div
-                                className="text-specgray text-[60px] text-center"
+                                    className="text-specgray text-[60px] text-center"
                                 >
                                     Nothing new
                                 </div>
@@ -168,6 +202,10 @@ export default function Unread() {
                             </div>
                         ) : (
                             <div>
+
+                                {showtoast.show && <GoodToast message='Accepted Request' />}
+
+                                {showtoast2.show && <ErrToast message="Declined Request" />}
 
                                 <div
                                     className="mt-5"

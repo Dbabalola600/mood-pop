@@ -7,6 +7,8 @@ import UserSearchResult from "../../components/Displays/UserSearchResult";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
 import search_l from "../../public/search_l.svg"
+import GoodToast from "../../components/Displays/GoodToast";
+import ErrToast from "../../components/Displays/ErrToast";
 
 
 type User = {
@@ -31,6 +33,9 @@ export default function Found() {
     const [user, setUser] = useState<User[]>([])
     const token = getCookie("USER")
     const router = useRouter()
+    const [showtoast, settoast] = useState({ message: "", show: false })
+    const [showtoast2, settoast2] = useState({ message: "", show: false })
+
     let ssd = router.query
 
 
@@ -83,6 +88,7 @@ export default function Found() {
                     const NotiRes = await fetch("/api/Notification/NewNotification", { method: "POST", body: JSON.stringify(body2) })
                         .then(res => {
                             if (res.status === 200) {
+                                settoast({ message: " message", show: true })
                                 router.push("/DashBoard")
 
                                 //send email notification
@@ -96,6 +102,8 @@ export default function Found() {
 
 
                 } if (res.status === 202) {
+                    settoast({ message: " message", show: true })
+
                     console.log("alreadysent")
 
                 }
@@ -103,6 +111,27 @@ export default function Found() {
 
 
     }
+
+
+
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+
+    useEffect(() => {
+        if (showtoast2.show) {
+            setTimeout(() => {
+                settoast2({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast2.show])
 
     return (
         <DefaultLayout>
@@ -146,6 +175,11 @@ export default function Found() {
 
                         ) : (
                             <div>
+
+                                {showtoast.show && <GoodToast message='Request Sucessful' />}
+
+                                {showtoast2.show && <ErrToast message="Something went wrong" />}
+
 
                                 {user.map((info, index) => (
                                     <div

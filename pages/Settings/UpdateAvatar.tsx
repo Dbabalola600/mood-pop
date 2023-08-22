@@ -1,14 +1,19 @@
 import { getCookie } from "cookies-next";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import imageCompression from "browser-image-compression";
 import CusHead from "../../components/Displays/CusHead";
+import ErrToast from "../../components/Displays/ErrToast";
+import GoodToast from "../../components/Displays/GoodToast";
 
 export default function UpdateAvatar() {
     const router = useRouter();
     const [isLoading, setLoading] = useState(false);
     const token = getCookie("USER");
+    const [showtoast, settoast] = useState({ message: "", show: false })
+    const [showtoast2, settoast2] = useState({ message: "", show: false })
+
 
     const convertFileToBase64 = async (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
@@ -64,9 +69,13 @@ export default function UpdateAvatar() {
             }).then(res => {
                 if (res.status === 200) {
                     // Success: do something
+                    settoast({ message: " message", show: true })
+
                     router.push("/DashBoard");
                 } else {
                     // Handle error
+                    settoast2({ message: " message", show: true })
+
                 }
             })
 
@@ -78,6 +87,25 @@ export default function UpdateAvatar() {
         }
     };
 
+
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+
+    useEffect(() => {
+        if (showtoast2.show) {
+            setTimeout(() => {
+                settoast2({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast2.show])
     return (
         <DefaultLayout>
             <form onSubmit={upload}>
@@ -90,6 +118,9 @@ export default function UpdateAvatar() {
                         title="Change Profile Picture"
                     />
                 </div>
+                {showtoast.show && <GoodToast message='Sucessful' />}
+
+                {showtoast2.show && <ErrToast message="Something went wrong" />}
 
                 <div>
 
