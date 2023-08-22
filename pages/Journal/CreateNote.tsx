@@ -36,7 +36,7 @@ export default function JournalNote() {
             .then(res => {
                 if (res.status === 200) {
                     settoast({ message: " message", show: true })
-                  
+
                     router.push("/Journal")
 
                 } else {
@@ -81,14 +81,14 @@ export default function JournalNote() {
                     title="Put something down why don't you?"
                 />
                 <div
-                className="mt-2"
+                    className="mt-2"
                 >
                     only you get to see this ❤️
                 </div>
 
                 {showtoast.show && <GoodToast message='Sucessful' />}
 
-{showtoast2.show && <ErrToast message="Something went wrong" />}
+                {showtoast2.show && <ErrToast message="Something went wrong" />}
 
                 <form
                     className=""
@@ -106,7 +106,7 @@ export default function JournalNote() {
 
                         <LargeTextInput
                             title="Content"
-                            placholder="write to your hearts content"
+                            placholder="Write to your heart's content"
                         />
 
                     </div>
