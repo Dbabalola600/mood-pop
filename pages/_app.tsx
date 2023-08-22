@@ -1,38 +1,42 @@
-import '../styles/globals.css'
-import 'tailwindcss/tailwind.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.css';
+import 'tailwindcss/tailwind.css';
+import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
 import LoadingAnimation from '../components/Displays/Loading';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-
-
+import { useEffect, useState } from 'react'; // Import useState
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
+  const [loading, setLoading] = useState(false); // Initialize a loading state
 
   useEffect(() => {
-    router.events.on('routeChangeStart', () =>
+    const handleRouteChangeStart = () => setLoading(true);
+    const handleRouteChangeComplete = () => setLoading(false);
+    const handleRouteChangeError = () => setLoading(false);
 
-      <LoadingAnimation />
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    router.events.on('routeChangeError', handleRouteChangeError);
 
-    );
-
-    router.events.on('routeChangeComplete', () =>
-
-      <LoadingAnimation />
-
-    );
-    router.events.on('routeChangeError', () =>
-
-      <LoadingAnimation />
-
-    );
+    // Clean up event listeners
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      router.events.off('routeChangeError', handleRouteChangeError);
+    };
   }, []);
 
+  return (
+    <>
+      {/* Show loading animation based on the loading state */}
+      {loading && <LoadingAnimation />}
 
-  return <Component {...pageProps} />
+      {/* Render the main content */}
+      <Component {...pageProps} />
+      {/* <NextNProgress /> */}
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;
