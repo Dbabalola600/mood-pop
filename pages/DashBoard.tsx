@@ -152,7 +152,7 @@ export default function DashBoard() {
                                 {showtoast.show && <GoodToast message='Copied to Clipboard' />}
 
                                 <div
-                                    className="hidden lg:block "
+                                    className=" lg:block "
                                 >
                                     <SearchBar />
                                 </div>

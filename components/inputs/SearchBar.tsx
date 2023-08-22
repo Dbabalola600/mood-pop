@@ -34,7 +34,7 @@ export default function SearchBar() {
             
 
             <div className="flex justify-center">
-                <div className="mb-3 w-full">
+                <div className="mb- mt-3 w-full">
                     <div
 
                         // className="relative mb-4 flex w-full flex-wrap items-stretch"
