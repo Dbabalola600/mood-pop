@@ -86,10 +86,10 @@ export default function NavBar() {
 
     return (
 
-        <Disclosure as="nav" className="dark:bg-black bg-white fixed top-0 left-0 right-0 z-10">
+        <Disclosure as="nav" className="dark:bg-black w-screen bg-white  top-0 left-0 right-0 z-10">
             {({ open }) => (
                 <>
-                    <div className="mx-auto px-2 sm:px-6 lg:px-8 ">
+                    <div className="mx-auto px-2 sm:px-6 lg:px-8 w-screen ">
                         <div className="relative flex h-16 items-center justify-between  ">
 
 

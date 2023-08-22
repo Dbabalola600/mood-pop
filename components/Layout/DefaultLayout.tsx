@@ -66,7 +66,7 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
 
     return (
         <>
-            <div className="grid lg:min-h-screen grid-rows-header bg-secondary ">
+            <div className="grid lg:min-h-screen w-screen grid-rows-header bg-secondary ">
                 <div
                 // className="lg:hidden"
                 >
@@ -77,7 +77,7 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
                 <div className="grid md:grid-cols-sidebar ">
                     <SideBar />
                     <div
-                        className=" min-h-screen px-10 py-5"
+                        className=" min-h-screen w-screen lg:w-[900px]   mx-auto px-10 lg:px-1 py-5 "
                     >
                         <main>
                             <Head>

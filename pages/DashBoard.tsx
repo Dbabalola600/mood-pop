@@ -104,7 +104,9 @@ export default function DashBoard() {
     return (
         <DefaultLayout>
             <>
-                <div>
+                <div
+                className=""
+                >
                     {isLoading ? (
                         <div>
                             <LoadFeed />
@@ -112,10 +114,12 @@ export default function DashBoard() {
                     ) : (
 
 
-                        <div>
+                        <div
+                        className=" "
+                        >
 
                             <div
-                                className="lg:mx-5 grid lg:grid-cols-2 grid-cols-1 mb-5 lg:mb-0 "
+                                className="lg:mx- grid lg:grid-cols-2 grid-cols-1 mb-5 lg:mb-0 "
                             >
                                 <div
                                     className="text-specgray  font-bold"
@@ -148,7 +152,7 @@ export default function DashBoard() {
                                 {showtoast.show && <GoodToast message='Copied to Clipboard' />}
 
                                 <div
-                                    className="hidden lg:block"
+                                    className="hidden lg:block "
                                 >
                                     <SearchBar />
                                 </div>
@@ -189,7 +193,7 @@ export default function DashBoard() {
                                 </div>
                             ) : (
                                 <div
-                                    className="lg:mx-5 pt-5"
+                                    className="lg:mx-5 pt-5 break-words "
                                 >
 
                                     <div
@@ -204,6 +208,7 @@ export default function DashBoard() {
                                     {post.map((info, index) => (
                                         <div
                                             key={index}
+                                            // className="w-1/2"
                                         >
 
                                             <Feed
