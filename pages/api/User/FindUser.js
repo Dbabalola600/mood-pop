@@ -6,14 +6,17 @@ import User from "../../../model/UserModel";
 
 
 export default async function GetUser(req, res) {
-    if (req.method === "POST") {
+    try {
         console.log('CONNECTING TO MONGO');
         await connectMongo();
         console.log('CONNECTED TO MONGO');
 
-        const { find } = JSON.parse(req.body)
+        // const { find } = JSON.parse(req.body)
 
-        console.log(find)
+        // console.log(find)
+
+
+        let find = req.query.find
 
 
         const target = await User.find({ UserName: { $regex: find, $options: "i" } })
@@ -33,11 +36,10 @@ export default async function GetUser(req, res) {
 
 
 
-    } else {
+    } catch (error) {
 
-        return (
-            res.status(400).json("error")
-        )
+        console.log(error);
+        res.json({ error })
     }
 
 

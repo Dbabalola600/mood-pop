@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import LoadFeed from "../../components/Loading/LoadFeed";
 import CusHead from "../../components/Displays/CusHead";
 import UserSearchResult from "../../components/Displays/UserSearchResult";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import search_l from "../../public/search_l.svg"
 import GoodToast from "../../components/Displays/GoodToast";
 import ErrToast from "../../components/Displays/ErrToast";
+import useSWR from "swr";
 
 
 type User = {
@@ -39,6 +40,14 @@ export default function Found() {
     let ssd = router.query
 
 
+    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+
+    const { data, error } = useSWR(
+        `/api/User/FindUser?find=${ssd.find}`,
+        fetcher
+    )
+
+
     const search = async () => {
         setLoading(true)
 
@@ -60,12 +69,18 @@ export default function Found() {
 
 
 
+    // useEffect(() => {
+    //     search()
+
+    // }, [])
+
+
+
     useEffect(() => {
-        search()
+        if (data) {
 
-    }, [])
-
-
+        }
+    }, [data])
 
 
     const SendReq = async (id: any) => {
@@ -134,6 +149,9 @@ export default function Found() {
 
     }, [showtoast2.show])
 
+
+    // console.log(data[0]._id)
+
     return (
         <DefaultLayout>
             <div>
@@ -161,7 +179,7 @@ export default function Found() {
 
 
 
-                        {user[0] === undefined ? (
+                        {data[0] === undefined ? (
                             <div>
                                 <div>
                                     <Image
@@ -182,7 +200,7 @@ export default function Found() {
                                 {showtoast2.show && <ErrToast message="Something went wrong" />}
 
 
-                                {user.map((info, index) => (
+                                {data?.map((info: { image: any; UserName: any; _id: any; }, index: Key | null | undefined) => (
                                     <div
                                         key={index}
                                     >

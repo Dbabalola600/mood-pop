@@ -49,7 +49,7 @@ export default function Feed() {
     const [user, setUser] = useState<User | null>(null)
     const [post, setPost] = useState<Post[]>([])
     const [showtoast, settoast] = useState({ message: "", show: false })
- 
+
     const showinfo = async () => {
         setLoading(true)
         const token = getCookie("USER")
@@ -81,7 +81,8 @@ export default function Feed() {
 
 
     const share = useRouter()
-    const base = `https://mood-pop.vercel.app/Search/${user?.UserName}`
+    const base = `https://mood-pop.vercel.app/Users/${user?.UserName}`
+    // const base = `http://localhost:3000/Users/${user?.UserName}`
 
     const links = base
 
@@ -93,12 +94,12 @@ export default function Feed() {
     }
     useEffect(() => {
         if (showtoast.show) {
-          setTimeout(() => {
-            settoast({ message: "", show: false })
-          }, 5000)
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
         }
-    
-      }, [showtoast.show])
+
+    }, [showtoast.show])
 
 
     return (
@@ -127,7 +128,7 @@ export default function Feed() {
                                     <CusHead
                                         title={`Hi, ${user?.UserName}`}
                                     />
-                                      <div
+                                    <div
                                         onClick={copylink}
                                         className="cursor-pointer"
                                     >

@@ -42,7 +42,7 @@ export default function DashBoard() {
     const [user, setUser] = useState<User | null>(null)
     const [post, setPost] = useState<Post[]>([])
     const [showtoast, settoast] = useState({ message: "", show: false })
- 
+
 
 
 
@@ -78,8 +78,8 @@ export default function DashBoard() {
 
 
     const share = useRouter()
-    // const base = `https://mood-pop.vercel.app/Search/${user?.UserName}`
- const base = `http://localhost:3000/Search/${user?.UserName}`
+    const base = `https://mood-pop.vercel.app/Users/${user?.UserName}`
+    // const base = `http://localhost:3000/Users/${user?.UserName}`
     const links = base
 
 
@@ -93,12 +93,12 @@ export default function DashBoard() {
 
     useEffect(() => {
         if (showtoast.show) {
-          setTimeout(() => {
-            settoast({ message: "", show: false })
-          }, 5000)
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
         }
-    
-      }, [showtoast.show])
+
+    }, [showtoast.show])
     //   if(post[0] === undef) 
 
     return (
