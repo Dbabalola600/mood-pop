@@ -179,7 +179,7 @@ export default function Found() {
 
 
 
-                        {data[0] === undefined ? (
+                        {data === undefined ? (
                             <div>
                                 <div>
                                     <Image
