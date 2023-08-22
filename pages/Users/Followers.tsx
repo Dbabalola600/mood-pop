@@ -5,6 +5,7 @@ import LoadFeed from "../../components/Loading/LoadFeed"
 import FollowingResult from "../../components/Displays/FollowingResult"
 import Image from "next/image"
 import people1 from "../../public/people1.svg"
+import GoodToast from "../../components/Displays/GoodToast"
 type User = {
 
     _id: string,
@@ -16,6 +17,7 @@ type User = {
 }
 
 export default function Follower() {
+    const [showtoast, settoast] = useState({ message: "", show: false })
 
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User[]>([])
@@ -41,6 +43,36 @@ export default function Follower() {
         showinfo()
 
     }, [])
+
+
+    const removeFollower = async (id: any) => {
+
+        const body = {
+            user: token,
+            id: id
+        }
+
+
+        const response = await fetch("/api/Follow/Unfollow", { method: "POST", body: JSON.stringify(body) })
+            .then(res => {
+                if (res.status === 200) {
+                    settoast({ message: " message", show: true })
+
+                    router.reload()
+                }
+            })
+    }
+
+
+
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
 
 
     return (
@@ -75,13 +107,15 @@ export default function Follower() {
                                 className="mt-5"
                             >
 
+                                {showtoast.show && <GoodToast message='Sucessful' />}
+
 
                                 {user.map((info, index) => (
                                     <div
                                         key={index}
                                     >
                                         <FollowingResult
-                                            clicky={() => { }}
+                                            clicky={() => {removeFollower(info._id) }}
                                             image={info.image}
                                             name={info.UserName}
                                         />

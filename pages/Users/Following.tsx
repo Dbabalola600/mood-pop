@@ -17,6 +17,7 @@ type User = {
 }
 
 export default function Following() {
+    const [showtoast, settoast] = useState({ message: "", show: false })
 
     const [isLoading, setLoading] = useState(false)
     const [user, setUser] = useState<User[]>([])
@@ -42,6 +43,36 @@ export default function Following() {
     }, [])
 
 
+
+    const removeFolling = async (id: any) => {
+
+        const body = {
+            user: id,
+            id: token
+        }
+
+
+        const response = await fetch("/api/Follow/Unfollow", { method: "POST", body: JSON.stringify(body) })
+            .then(res => {
+                if (res.status === 200) {
+                    settoast({ message: " message", show: true })
+
+                    router.reload()
+                }
+            })
+    }
+
+
+    useEffect(() => {
+        if (showtoast.show) {
+            setTimeout(() => {
+                settoast({ message: "", show: false })
+            }, 5000)
+        }
+
+    }, [showtoast.show])
+
+    
     return (
         <div>
             {isLoading ? (
@@ -80,7 +111,7 @@ export default function Following() {
                                         key={index}
                                     >
                                         <FollowingResult
-                                            clicky={() => { }}
+                                            clicky={() => { removeFolling(info._id)}}
                                             image={info.image}
                                             name={info.UserName}
                                         />
