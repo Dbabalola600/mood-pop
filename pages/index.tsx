@@ -155,7 +155,7 @@ export default function HomePage() {
                 <div className="mx-auto  w-full ">
                   <TextInput
                     placeholder="User Name or Email"
-                    name="User Name or Emial"
+                    name="User Name or Email"
                     type='text'
 
                   />
