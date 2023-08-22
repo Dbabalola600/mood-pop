@@ -73,6 +73,9 @@ export default function Unread() {
                     //delete notification
                     // settoast({ message: " message", show: true })
 
+
+                    console.log("1")
+
                     const body2 = {
                         id: req_id,
                         user: token,
@@ -84,15 +87,15 @@ export default function Unread() {
                                 // accept request
 
                                 // settoast({ message: " message", show: true })
-
+                                console.log("2")
                                 const body3 = {
                                     id: req_id
                                 }
                                 const Reqreponse = await fetch("/api/Request/AcceptRequest", { method: "POST", body: JSON.stringify(body3) })
                                     .then(res => {
                                         if (res.status === 200) {
+                                            console.log("3")
                                             settoast({ message: " message", show: true })
-
                                             router.push("/DashBoard")
                                         }
                                     })

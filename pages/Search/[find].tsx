@@ -105,6 +105,7 @@ export default function Found() {
                     settoast({ message: " message", show: true })
 
                     console.log("alreadysent")
+                    router.push("/DashBoard")
 
                 }
             })

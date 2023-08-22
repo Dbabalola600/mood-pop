@@ -60,23 +60,23 @@ export default function RequestNotif(props: MyProps) {
 
                 <div
                     className="float-right bg-green-500 text-white  p-3 rounded-full cursor-pointer dark:bg-green-500 dark:text-white hover:bg-black "
+                    onClick={props.Acceptclicky}
                 >
-                    <button
-                        onClick={props.Acceptclicky}
-                    >
-                        Accept
-                    </button>
+
+
+
+                    Accept
+
 
                 </div>
 
                 <div
                     className="float-right bg-red-500 text-white  p-3 rounded-full cursor-pointer dark:bg-red-500 dark:text-white hover:bg-black "
+                    onClick={props.Declineclicky}
                 >
-                    <button
-                        onClick={props.Declineclicky}
-                    >
-                        Decline
-                    </button>
+
+                    Decline
+
 
                 </div>
 
