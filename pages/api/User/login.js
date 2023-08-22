@@ -28,6 +28,7 @@ export default async function Login(req, res) {
             } else {
                 if (password === existingUser_mail.password) {
                     setCookie("USER", existingUser_mail._id, { req, res, maxAge: 86400 })
+                    setCookie("TEMPMAIL", existingUser_mail.email, { req, res, maxAge: 600 })
 
                     return res.status(200).json(existingUser_mail)
                 } else {
@@ -40,6 +41,7 @@ export default async function Login(req, res) {
             if (password === existingUser.password) {
 
                 setCookie("USER", existingUser._id, { req, res, maxAge: 86400 })
+                setCookie("TEMPMAIL", existingUser.email, { req, res, maxAge: 600 })
 
 
                 return res.status(200).json(existingUser)

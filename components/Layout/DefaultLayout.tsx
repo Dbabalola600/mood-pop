@@ -34,9 +34,9 @@ function DefaultLayout({ children }: { children?: JSX.Element }) {
         setUser(response)
 
 
-        // if (response.isVerified === false) {
-        //     router.push("/Verification/VerifyEmail")
-        // }
+        if (response.isVerified === false) {
+            router.push("/Verification/VerifyEmail")
+        }
     }
 
 

@@ -1,7 +1,7 @@
 import connectMongo from "../../../utils/connectMongo";
 import User from "../../../model/UserModel";
 import Token from "../../../model/TokenModel";
-
+import { setCookie } from "cookies-next";
 
 
 
@@ -15,6 +15,10 @@ export default async function NewToken(req, res) {
 
 
         const { UId } = JSON.parse(req.body)
+
+
+
+        const person = await User.findById(UId)
 
 
         // generate tokens for verificaton 
@@ -35,6 +39,8 @@ export default async function NewToken(req, res) {
             token: generateToken(8),
             type: "verify_email"
         })
+
+        // setCookie("TEMPMAIL", person.email, { req, res, maxAge: 600 })
 
 
         res.status(200).json(GotEm)

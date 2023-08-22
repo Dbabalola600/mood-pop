@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 
         const { mail, title } = JSON.parse(req.body)
 
-        console.log(title)
+        console.log(mail)
         switch (method) {
             case "POST": {
 
@@ -22,7 +22,7 @@ const handler = async (req, res) => {
                     //mail
                     mail,
                     //context
-                   " please input the following to verify your account: "+ title
+                   "Log in and please input the following to verify your account: "+ title
 
                 );
                 res.status(200).send("Success");
