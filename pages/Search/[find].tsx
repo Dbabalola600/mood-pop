@@ -5,8 +5,8 @@ import LoadFeed from "../../components/Loading/LoadFeed";
 import CusHead from "../../components/Displays/CusHead";
 import UserSearchResult from "../../components/Displays/UserSearchResult";
 import { getCookie } from "cookies-next";
-
-
+import Image from "next/image";
+import search_l from "../../public/search_l.svg"
 
 
 type User = {
@@ -133,7 +133,14 @@ export default function Found() {
 
                         {user[0] === undefined ? (
                             <div>
-                                nufin
+                                <div>
+                                    <Image
+                                        src={search_l}
+                                        width={"400px"}
+                                        height={"300px"}
+                                    />
+
+                                </div>
 
                             </div>
 
