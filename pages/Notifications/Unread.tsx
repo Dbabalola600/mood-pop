@@ -59,56 +59,61 @@ export default function Unread() {
 
 
     const AcceptReq = async (req_id: any, user_id: any) => {
-
-        console.log(req_id, user_id)
-
-        const body = {
-            user: token,
-            id: user_id
-        }
-        //update follower
-        const Follow = await fetch("/api/Follow/NewFollow", { method: "POST", body: JSON.stringify(body) })
-            .then(async res => {
-                if (res.status === 200) {
-                    //delete notification
-                    // settoast({ message: " message", show: true })
+        try {
 
 
-                    console.log("1")
+            console.log(req_id, user_id)
 
-                    const body2 = {
-                        id: req_id,
-                        user: token,
-                        cat: "request"
-                    }
-                    const Notireponse = await fetch("/api/Notification/MarkRead", { method: "POST", body: JSON.stringify(body2) })
-                        .then(async res => {
-                            if (res.status === 200) {
-                                // accept request
+            const body = {
+                user: token,
+                id: user_id
+            }
+            //update follower
+            const Follow = await fetch("/api/Follow/NewFollow", { method: "POST", body: JSON.stringify(body) })
+                .then(async res => {
+                    if (res.status === 200) {
+                        //delete notification
+                        // settoast({ message: " message", show: true })
 
-                                // settoast({ message: " message", show: true })
-                                console.log("2")
-                                const body3 = {
-                                    id: req_id
+
+                        console.log("1")
+
+                        const body2 = {
+                            id: req_id,
+                            user: token,
+                            cat: "request"
+                        }
+                        const Notireponse = await fetch("/api/Notification/MarkRead", { method: "POST", body: JSON.stringify(body2) })
+                            .then(async res => {
+                                if (res.status === 200) {
+                                    // accept request
+
+                                    // settoast({ message: " message", show: true })
+                                    console.log("2")
+                                    const body3 = {
+                                        id: req_id
+                                    }
+                                    const Reqreponse = await fetch("/api/Request/AcceptRequest", { method: "POST", body: JSON.stringify(body3) })
+                                        .then(res => {
+                                            if (res.status === 200) {
+                                                console.log("3")
+                                                settoast({ message: " message", show: true })
+                                                router.push("/DashBoard")
+                                            }
+                                        })
+
+
                                 }
-                                const Reqreponse = await fetch("/api/Request/AcceptRequest", { method: "POST", body: JSON.stringify(body3) })
-                                    .then(res => {
-                                        if (res.status === 200) {
-                                            console.log("3")
-                                            settoast({ message: " message", show: true })
-                                            router.push("/DashBoard")
-                                        }
-                                    })
+                            })
+                    } else {
+                        //error occured
+                    }
+                })
 
-
-                            }
-                        })
-                } else {
-                    //error occured
-                }
-            })
-
-
+        } catch (error) {
+            console.error("An error occurred:", error);
+            // Handle the error appropriately
+        }
 
 
     }
@@ -220,7 +225,12 @@ export default function Unread() {
                                             key={index}
                                         >
                                             <RequestNotif
-                                                Acceptclicky={() => { AcceptReq(info.peep._id, info.user._id) }}
+                                                Acceptclicky={() => {
+                                                    AcceptReq(
+                                                        info.peep._id,
+                                                        info.user._id
+                                                    )
+                                                }}
                                                 image={info.user.image}
                                                 name={info.user.UserName}
                                                 Declineclicky={() => { DeclineReq(info.peep._id) }}

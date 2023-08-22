@@ -10,51 +10,33 @@ import Follow from "../../../model/FollowModel";
 export default async function NewFollow(req, res) {
 
     // console.log(req.method)
-    if (req.method === "POST") {
+    try {
         console.log('CONNECTING TO MONGO');
         await connectMongo();
         console.log('CONNECTED TO MONGO');
 
-        const { user, id } = JSON.parse(req.body)
+        const { user, id } = JSON.parse(req.body);
 
-        const person_following = await Follow.findOne({ userId: id })
+        const person_following = await Follow.findOne({ userId: id });
+        const person_to_follow = await Follow.findOne({ userId: user });
 
-        const person_to_follow = await Follow.findOne({ userId: user })
-
-
-        //adding user to following 
-        const FollowingIds = []
-        for (let i = 0; i < person_following.following.length; i++) {
-            FollowingIds.push(person_following.following[i])
-        }
-
+        // Adding user to following
         const newFollowing = await Follow.updateOne(
             { _id: person_following._id },
             { $push: { following: { $each: [user], $position: 0 } } },
             { new: true }
-        ).exec()
+        ).exec();
 
-
-        // update the reiever's followers
-        const FollowersIds = []
-        for (let i = 0; i < person_to_follow.followers.length; i++) {
-            FollowersIds.push(person_to_follow.followers[i])
-        }
-
-        const newFollower= await Follow.updateOne(
+        // Update the receiver's followers
+        const newFollower = await Follow.updateOne(
             { _id: person_to_follow._id },
             { $push: { followers: { $each: [id], $position: 0 } } },
             { new: true }
-        ).exec()
+        ).exec();
 
-
-        return res.status(200).json(person_following)
-
-
-
-    } else {
-        return res.status(400).json(
-            "wrong request"
-        );
+        return res.status(200).json(person_following);
+    } catch (error) {
+        console.error('An error occurred:', error);
+        return res.status(500).json('Internal server error');
     }
 }
