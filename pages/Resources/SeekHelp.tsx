@@ -9,12 +9,18 @@ export default function SeekHelp() {
 
 
     const numbers = [
-        { number: "+2348055014338", name: "me", }
+        { number: "+234 906 254 4446", name: "Mental Health Support Initiative (MHSI)" },
+        { number: "0706 624 3252", name: "Mentally Aware Nigeria Initiative (MANI)" },
+        { number: "0909 291 2292", name: "She Writes Woman Helpline" },
+  
+    
     ]
 
 
     const mails = [
-        { mail: "dami600bab@gmail.com", name: "me", }
+        { mail: "info@mentallyaware.org", name: "Mentally Aware Nigeria Initiative (MANI)", },
+        { mail: " info@shewriteswoman.org", name: "She Writes Woman", },
+        { mail: "info@hellomentalhealth.com", name: "Hello Mental Health", },
     ]
     return (
         <DefaultLayout>
@@ -29,7 +35,7 @@ export default function SeekHelp() {
 
 
                 <div
-                    className="mb-6 text-black text-2xl font-bold mt-5"
+                    className="mb-6 break-words text-black text-lg font-bold mt-5"
                 >
                     Hotlines📞
                     <div
@@ -63,7 +69,7 @@ export default function SeekHelp() {
 
 
                 <div
-                    className="mb-6 text-black text-2xl font-bold mt-5"
+                    className="mb-6 text-black break-words text-lg font-bold mt-5"
                 >
                     Mails ✉️
                     <div
