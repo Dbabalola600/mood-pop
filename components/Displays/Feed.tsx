@@ -81,7 +81,7 @@ export default function Feed(props: FeedProps) {
 
 
             <div
-                className="bg-specpurple text-secondary lg:text-4xl rounded-b-xl h-full pb-10 mx-auto px-10 text-center pt-5 justify-center breakwords"
+                className="bg-specpurple text-secondary  break-words lg:text-4xl rounded-b-xl h-full pb-10 mx-auto px-10 text-center pt-5 justify-center breakwords"
             >
 
                 {props.content}
