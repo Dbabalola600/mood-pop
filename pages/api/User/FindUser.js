@@ -13,6 +13,7 @@ export default async function GetUser(req, res) {
 
         const { find } = JSON.parse(req.body)
 
+        console.log(find)
 
 
         const target = await User.find({ UserName: { $regex: find, $options: "i" } })

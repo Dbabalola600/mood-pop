@@ -71,7 +71,7 @@ export default function Unread() {
             .then(async res => {
                 if (res.status === 200) {
                     //delete notification
-                    settoast({ message: " message", show: true })
+                    // settoast({ message: " message", show: true })
 
                     const body2 = {
                         id: req_id,
@@ -83,7 +83,7 @@ export default function Unread() {
                             if (res.status === 200) {
                                 // accept request
 
-                                settoast({ message: " message", show: true })
+                                // settoast({ message: " message", show: true })
 
                                 const body3 = {
                                     id: req_id
