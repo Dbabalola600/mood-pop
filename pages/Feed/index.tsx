@@ -111,6 +111,15 @@ export default function Feed() {
                 <div>
                     {isLoading ? (
                         <div>
+
+                            <div
+                                className="mb-6 text-black text-2xl font-bold"
+                            >
+                                Your Feed
+                                <div
+                                    className="w-[150px] bg-primary h-1 rounded-full"
+                                />
+                            </div>
                             <LoadFeed />
                         </div>
                     ) : (

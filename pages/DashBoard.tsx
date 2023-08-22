@@ -105,17 +105,28 @@ export default function DashBoard() {
         <DefaultLayout>
             <>
                 <div
-                className=""
+                    className=""
                 >
                     {isLoading ? (
+
+
                         <div>
+
+                            <div
+                                className="mb-6 text-black text-2xl font-bold"
+                            >
+                                Dashboard
+                                <div
+                                    className="w-[150px] bg-primary h-1 rounded-full"
+                                />
+                            </div>
                             <LoadFeed />
                         </div>
                     ) : (
 
 
                         <div
-                        className=" "
+                            className=" "
                         >
 
                             <div
@@ -208,7 +219,7 @@ export default function DashBoard() {
                                     {post.map((info, index) => (
                                         <div
                                             key={index}
-                                            // className="w-1/2"
+                                        // className="w-1/2"
                                         >
 
                                             <Feed
