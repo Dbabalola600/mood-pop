@@ -78,7 +78,7 @@ export default function DashBoard() {
 
 
     const share = useRouter()
-    const base = `https://mood-pop.vercel/search/${user?.UserName}`
+    const base = `https://mood-pop.vercel/Search/${user?.UserName}`
 
     const links = base
 
