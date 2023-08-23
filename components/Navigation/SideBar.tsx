@@ -32,9 +32,10 @@ export default function UserSideBar() {
     const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
     const { data, error } = useSWR(
-        `/api/Notification/CountNotifications?user=${token}`,
+        `/api/User/BarReq?user=${token}`,
         fetcher
     )
+
 
     const [user, setUser] = useState<User | null>(null)
 
@@ -52,10 +53,10 @@ export default function UserSideBar() {
 
     }
 
-    useEffect(() => {
-        showinfo()
+    // useEffect(() => {
+    //     showinfo()
 
-    }, [])
+    // }, [])
 
 
     useEffect(() => {
@@ -72,7 +73,7 @@ export default function UserSideBar() {
         { title: "Journal", link: "/Journal", icon: "BsFillJournalBookmarkFill" },
         { title: "Feed", link: "/Feed", icon: "FaReadme" },
         // { title: "Search", link: "/Search", icon: "TbUserSearch" },
-        { title: `${data}Notifications`, link: "/Notifications", icon: "MdNotifications" }
+        { title: `${data?.number}Notifications`, link: "/Notifications", icon: "MdNotifications" }
 
     ]
 
@@ -80,7 +81,7 @@ export default function UserSideBar() {
 
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
-            {user?.image === undefined ? (
+            {data?.user.image === undefined ? (
                 <div className="flex justify-center items-center pt-5 ">
                     <div className="avatar">
                         <div className="w-40 h-30 text-center rounded-full flex justify-center items-center">
@@ -95,7 +96,7 @@ export default function UserSideBar() {
                     <div className="avatar">
                         <div className="w-24 rounded-full">
                             <img
-                                src={`${user?.image}`}
+                                src={`${data?.user.image}`}
                                 alt="User Profile Pic"
                             // className="rounded-badge"
                             // style={{ maxWidth: "50%",  }}

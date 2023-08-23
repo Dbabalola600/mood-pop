@@ -13,6 +13,21 @@ import { TbUserSearch } from "react-icons/tb"
 import { LuHelpingHand } from "react-icons/lu"
 import useSWR from 'swr'
 
+import { CgProfile } from "react-icons/cg"
+
+
+
+type User = {
+    _id: string,
+    UserName: string,
+    email: string,
+    isVerified: string,
+    image: string
+}
+
+
+
+
 const Content = [
     { link: "/DashBoard", icon: "MdSpaceDashboard" },
     { link: "/Resources", icon: "LuHelpingHand" },
@@ -25,36 +40,23 @@ const Content = [
 ]
 
 
+
+
+
 export default function BottomNavBar() {
     const token = getCookie("USER")
 
     const router = useRouter()
-    const logout = async () => {
-        //e.preventDefault()
-
-
-        // setLoading(true)
-
-        const userCheck = hasCookie("NormUser")
-
-        if (userCheck == true) {
-            deleteCookie('NormUser', { path: '/', domain: 'localhost' })
-
-            router.push('/')
-
-        }
-
-        // setLoading(false)
-    }
-
 
 
     const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
     const { data, error } = useSWR(
-        `/api/Notification/CountNotifications?user=${token}`,
+        `/api/User/BarReq?user=${token}`,
         fetcher
     )
+
+
 
 
     useEffect(() => {
@@ -63,9 +65,26 @@ export default function BottomNavBar() {
         }
     }, [data])
 
+    console.log(data?.user)
+
+
+
+    const SidebarContent = [
+        { title: "Dashboard", link: "/DashBoard", icon: "MdSpaceDashboard" },
+        { title: "Resources", link: "/Resources", icon: "LuHelpingHand" },
+        { title: "Journal", link: "/Journal", icon: "BsFillJournalBookmarkFill" },
+        { title: "Feed", link: "/Feed", icon: "FaReadme" },
+        // { title: "Search", link: "/Search", icon: "TbUserSearch" },
+        { title: `${data?.number}Notifications`, link: "/Notifications", icon: "MdNotifications" }
+
+    ]
+
 
     return (
-        <div className=" bg-white dark:bg-black lg:hidden  text-gray-400 sticky bottom-0">
+
+
+
+        <footer className=" bg-white dark:bg-black lg:hidden  text-gray-400 sticky bottom-0">
 
 
             <div className='grid grid-cols-5 gap-4 justify-items-center '>
@@ -88,7 +107,7 @@ export default function BottomNavBar() {
                                     className='indicator  cursor-pointer text-2xl hover:text-primary  rounded-lg px- py-5'
                                 >
                                     <span className="indicator-item text-sm badge text-white px-2 mt-4 text-hite rounded-full bg-green-500">
-                                        {data}
+                                        {data?.number}
                                     </span>
                                     <MdNotifications color='gray-400' />
                                 </span>
@@ -124,7 +143,12 @@ export default function BottomNavBar() {
 
 
 
+        </footer>
 
-        </div>
+
+
+
+
+
     )
 }
