@@ -28,16 +28,7 @@ export default async function GetAllRequest(req, res) {
             IdStruct.push(Person[i].from)
         }
 
-        // const CoolStruct = await Promise.all(IdStruct.map(async (peep) => {
-        //     const Peeps = await User.findById(peep)
-
-        //     return (
-        //         {
-        //             peep,
-        //             user: Peeps
-        //         }
-        //     )
-        // }))
+       
 
 
 

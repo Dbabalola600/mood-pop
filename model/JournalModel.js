@@ -8,9 +8,6 @@ const JournalSchema = new Schema({
         // unique: true,
         ref: "User"
     },
-
-
-
     note: {
         type: Array,
         page: {
