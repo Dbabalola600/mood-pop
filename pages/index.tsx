@@ -11,6 +11,7 @@ import UnLogged from '../components/Layout/UnLogged'
 import sign_in from "../public/sign_in.svg"
 import GoodToast from '../components/Displays/GoodToast'
 import ErrToast from '../components/Displays/ErrToast'
+import { AiOutlineCloudDownload } from 'react-icons/ai'
 
 export default function HomePage() {
   const [isLoading, setLoading] = useState(false)
