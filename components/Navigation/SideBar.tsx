@@ -65,7 +65,7 @@ export default function UserSideBar() {
         }
     }, [data])
 
-    console.log(data)
+    console.log(data?.user?.image)
 
     const Content = [
         { title: "Dashboard", link: "/DashBoard", icon: "MdSpaceDashboard" },
@@ -81,7 +81,7 @@ export default function UserSideBar() {
 
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
-            {data?.user.image === undefined ? (
+            {data?.user?.image === ''  ? (
                 <div className="flex justify-center items-center pt-5 ">
                     <div className="avatar">
                         <div className="w-40 h-30 text-center rounded-full flex justify-center items-center">
@@ -96,7 +96,7 @@ export default function UserSideBar() {
                     <div className="avatar">
                         <div className="w-24 rounded-full">
                             <img
-                                src={`${data?.user.image}`}
+                                src={`${data?.user?.image}`}
                                 alt="User Profile Pic"
                             // className="rounded-badge"
                             // style={{ maxWidth: "50%",  }}

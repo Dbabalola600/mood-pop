@@ -69,10 +69,7 @@ export default function Found() {
 
 
 
-    // useEffect(() => {
-    //     search()
-
-    // }, [])
+   
 
 
 
