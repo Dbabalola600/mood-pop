@@ -65,7 +65,7 @@ export default function BottomNavBar() {
         }
     }, [data])
 
-    console.log(data?.user)
+    // console.log(data?.user)
 
 
 

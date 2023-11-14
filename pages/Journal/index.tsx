@@ -36,11 +36,6 @@ export default function Journal() {
         const response = await fetch("/api/Journal/GetJournal", { method: "POST", body: JSON.stringify(body) })
             .then(res => res.json()) as Journal[]
         setJournal(response)
-
-
-
-
-
         setLoading(false)
     }
 

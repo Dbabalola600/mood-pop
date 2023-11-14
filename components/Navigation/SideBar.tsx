@@ -65,7 +65,7 @@ export default function UserSideBar() {
         }
     }, [data])
 
-    console.log(data?.user?.image)
+    // console.log(data?.user?.image)
 
     const Content = [
         { title: "Dashboard", link: "/DashBoard", icon: "MdSpaceDashboard" },

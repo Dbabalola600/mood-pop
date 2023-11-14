@@ -5,7 +5,7 @@ const AudioJournalSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        // unique: true,
+
         ref: "User"
     },
 
@@ -26,8 +26,7 @@ const AudioJournalSchema = new Schema({
             },
             Date: {
                 type: String,
-                // required: true,
-                // default: Date.now
+              
             },
         }
 

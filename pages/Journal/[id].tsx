@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import JournalFeed from "../../components/Displays/JournalFeed";
 import DefaultLayout from "../../components/Layout/DefaultLayout";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 
 
@@ -21,29 +22,16 @@ export default function Journal() {
 
 
     const ssd = router.query
-    const showinfo = async () => {
-        setLoading(true)
-
-        const body = {
-            id: token,
-            NId: ssd.id
-        }
-
-        const response = await fetch("/api/Journal/GetNote", { method: "POST", body: JSON.stringify(body) })
-            .then(res => res.json()) as Journal
-        setJournal(response)
+    const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
 
+    const { data, error } = useSWR(
+        `/api/Journal/GetJournalNote?userId=${token}&find=${ssd.id}`,
+        fetcher
+    )
 
+    console.log(data)
 
-
-        setLoading(false)
-    }
-
-    useEffect(() => {
-        showinfo()
-
-    }, [])
 
 
     return (
@@ -58,22 +46,22 @@ export default function Journal() {
                     <div
                         className="text-black"
                     >
-                        Title:{" "} {journal?.title}
+                        Title:{" "} {data?.title}
                     </div>
 
                     <div
                         className="text-right text-white"
                     >
-                        Date:{" "}{journal?.Date}
+                        Date:{" "}{data?.Date}
                     </div>
 
                 </div>
 
 
                 <div
-                className="bg-white p-5 mt-5 text-black rounded-xl"
+                    className="bg-white p-5 mt-5 text-black rounded-xl"
                 >
-                    {journal?.content}
+                    {data?.content}
 
                 </div>
 
