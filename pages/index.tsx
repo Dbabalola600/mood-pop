@@ -65,7 +65,7 @@ export default function HomePage() {
         }
         if (res.status === 402) {
           settoast2({ message: " message", show: true })
-        }else {
+        } else {
           settoast3({ message: " message", show: true })
         }
       })
@@ -206,7 +206,7 @@ export default function HomePage() {
                 </div>
 
 
-                 <div className="flex mt-8 lg:mt-10">
+                <div className="flex mt-8 lg:mt-10">
                   <div className="m-auto">
                     <a href="https://drive.google.com/uc?export=download&id=19jKOC8BW0ytQ3xrb6GbFObZB5vUryTag">
                       <div className="bg-primary font-bold text-white text-xl rounded px-8 py-6 hover:text-primary hover:bg-white hover:ring-2 hover:ring-primary">

@@ -51,7 +51,7 @@ export default function BottomNavBar() {
 
     const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-    const { data, error } = useSWR(
+    const { data, error, isLoading, isValidating } = useSWR(
         `/api/User/BarReq?user=${token}`,
         fetcher
     )
