@@ -208,7 +208,7 @@ export default function HomePage() {
 
                 <div className="flex mt-8 lg:mt-10">
                   <div className="m-auto">
-                    <a href="https://drive.google.com/uc?export=download&id=19jKOC8BW0ytQ3xrb6GbFObZB5vUryTag">
+                    <a href="https://drive.google.com/file/d/1_T9M8WyVZjhyLPTtsProDQhz4B3aNPt7/view?usp=sharing">
                       <div className="bg-primary font-bold text-white text-xl rounded px-8 py-6 hover:text-primary hover:bg-white hover:ring-2 hover:ring-primary">
                         <div className="flex items-center space-x-4">
                           <AiOutlineCloudDownload />
