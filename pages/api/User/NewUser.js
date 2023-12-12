@@ -32,7 +32,7 @@ export default async function NewUser(req, res) {
                     role: "user",
                     isActive: true,
                     isVerified: false, 
-                    image: "none"
+                    image: ""
                 })
 
 
