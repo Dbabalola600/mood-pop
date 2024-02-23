@@ -18,7 +18,7 @@ export default function PostFeed(props: FeedProps) {
             <div
                 className="mx-5 mb-5 pt-5 "
             >
-                {props.image === undefined ? (
+                {props.image === undefined || props.image ===  "" ? (
                     <div className="  ">
                         <div className="avatar">
                             <div className="  rounded-full flex ">
