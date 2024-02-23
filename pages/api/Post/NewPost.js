@@ -31,6 +31,8 @@ export default async function NewPost(req, res) {
         })
 
 
+        console.log(NewPost)
+
         return res.status(200).json(NewPost)
 
 

@@ -54,6 +54,8 @@ export default function HomePage() {
       password: form.item(1).value,
     }
 
+    
+
     const response = await fetch("/api/User/login", { method: "POST", body: JSON.stringify(body) })
       .then(res => {
         if (res.status === 200) {

@@ -10,7 +10,7 @@ export async function sendMail(subject, toEmail, otpText) {
   });
 
   var mailOptions = {
-    from: process.env.NODEMAILER_EMAIL,
+    from: `MOOD-POP   ${process.env.NODEMAILER_EMAIL}`,
     to: toEmail,
     subject: subject,
     text: otpText,

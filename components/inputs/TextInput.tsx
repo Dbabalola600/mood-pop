@@ -23,7 +23,7 @@ function TextInput(props: TextInputProps) {
                 </label>
                 <input type={props.type}
                     placeholder={props.placeholder}
-                    className="input input-bordered w-full  input-primary text-black "
+                    className="input input-bordered w-full  input-primary text-black  dark:bg-white"
                 />
 
             </div>

@@ -7,13 +7,22 @@ import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 
 
+type User = {
 
+    _id: string,
+    UserName: string,
+    email: string,
+    isVerified: string,
+    image: string
+
+}
 
 
 export default function Post() {
     const [isLoading, setLoading] = useState(false)
     const router = useRouter()
     const token = getCookie("USER")
+    const [user, setUser] = useState<User | null>(null)
 
     const newadd: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
@@ -27,10 +36,40 @@ export default function Post() {
             post: form.item(1).value
         }
 
+
+        const body2 = {
+            id: token
+        }
+
         const response = await fetch("/api/Post/NewPost", { method: "POST", body: JSON.stringify(body) })
-            .then(res => {
+            .then(async res => {
                 if (res.status === 200) {
+                    // router.push("/DashBoard")
+
+
+                    const response = await fetch("/api/Follow/GetFollowers", { method: "POST", body: JSON.stringify(body2) })
+                        .then(res => res.json()) as User[]
+                    // console.log("fod", response)
+                    const UserRes = await fetch("/api/User/GetUser", { method: "POST", body: JSON.stringify(body2) })
+                        .then(res => res.json()) as User
+                    setUser(UserRes)
+
+
+                    // console.log(UserRes)
+                    // const AllFollwoers =[]
+                    for (let i = 0; i < response.length; i++) {
+                        const body3 = {
+                            mail: response[i].email,
+                            user: UserRes?.UserName
+                        }
+
+                        const MailRes = await fetch("/api/mail/NewPost", { method: "POST", body: JSON.stringify(body3) })
+
+                    }
+
                     router.push("/DashBoard")
+
+
 
                 } else {
                     //display error

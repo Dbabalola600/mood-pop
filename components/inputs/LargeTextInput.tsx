@@ -16,7 +16,7 @@ export default function LargeTextInput(props: MyProps) {
 
 
             <textarea
-                className=" text-black w-full h-[300px] p-2 resize-y border rounded-md input input-bordered input-primary  "
+                className=" text-black w-full h-[300px] p-2 resize-y border rounded-md input input-bordered input-primary dark:bg-white  "
                 placeholder={props.placholder}
             />
 
