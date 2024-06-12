@@ -15,7 +15,7 @@ export default function UserSearchResult(props: MyProps) {
         <div
             className="bg-white pt-5 pb-5 px-5 h-[100px] mb-5 rounded-lg"
         >
-            {props.image === '' ? (
+            {props.image === '' || props.image === undefined || props.image === null ? (
                 <div
                     className="avatar"
                 >

@@ -81,7 +81,7 @@ export default function UserSideBar() {
 
         <div className=":h-screen hidden lg:block dark:bg-black bg-white">
 
-            {data?.user?.image === ''  ? (
+            {data?.user?.image === ''  || data?.user?.image === undefined || data?.user?.image === null  ? (
                 <div className="flex justify-center items-center pt-5 ">
                     <div className="avatar">
                         <div className="w-40 h-30 text-center rounded-full flex justify-center items-center">
